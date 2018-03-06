@@ -1,0 +1,1 @@
+ordner für doku oder misc nebendem ionic projekt ordner
