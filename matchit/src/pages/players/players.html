@@ -18,13 +18,13 @@
               <ion-list>
                 <!-- 1 item hard coded -->
                   <ion-item>
-                      <ion-avatar item-start>
-                          <img src="../../../assets/imgs/Michaela.png">
+                      <ion-avatar item-start (click)="takePicture()">
+                          <img src="assets/imgs/Michaela.png">
                       </ion-avatar>
                       <ion-label>Michaela</ion-label>
                     </ion-item>
                 <ion-item>
-                    <ion-avatar item-start>
+                    <ion-avatar item-start (click)="takePicture()">
                         <ion-icon name="add-circle"></ion-icon>
                     </ion-avatar>
                     <ion-label stacked>playername</ion-label>
