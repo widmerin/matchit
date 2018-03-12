@@ -17,7 +17,7 @@
 			<ion-col col-12>
 				<ion-list>
 					<!-- 1 item hard coded -->
-					 <ion-item-sliding *ngFor="let player of players" #item>
+					 <ion-item-sliding *ngFor="let player of players" #slidingItem>
 						<ion-item>
 							<ion-avatar item-start (click)="takePicture()">
 								<img [src]="player.img">
@@ -25,12 +25,12 @@
 							<ion-label>{{player.name}}</ion-label>
 						</ion-item>
 						<ion-item-options>
-							<button ion-button color="warning" (click)="editItem(item)">
+							<button ion-button color="warning" (click)="editItem(slidingItem, player)">
 								<span class="button-inner">
 									<ion-icon name="create"></ion-icon>Edit
 								</span>
 							</button>
-							<button ion-button expandable color="danger" (click)="deleteItem(item)">
+							<button ion-button expandable color="danger" (click)="deleteItem(slidingItem, player)">
 								<span class="button-inner">
 									<ion-icon name="trash" ion-icon></ion-icon>Delete
 								</span>

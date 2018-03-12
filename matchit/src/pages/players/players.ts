@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { ItemSliding } from 'ionic-angular';
 
 @Component({
   selector: 'page-players',
@@ -40,19 +41,16 @@ export class PlayersPage {
     });
   }
 
-  deleteItem(item: ItemSliding){
-    //ToDo: Delete element in list
-    let index = this.players.indexOf(item);
-
+  deleteItem(slidingItem: ItemSliding, person){
+    let index = this.players.indexOf(person);
     if(index > -1){
-      this.players.splice(index, 1);
+      this.players.splice(person, 1);
     }
-    item.close();
+    slidingItem.close();
   }
 
-  editItem(item: ItemSliding){
-    //ToDo: Edit element in list
-    console.log("edit"+item.name);
-    item.close();
+  editItem(slidingItem: ItemSliding, person){
+    console.log(editItem);
+    slidingItem.close();
   }
 }
