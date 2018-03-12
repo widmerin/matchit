@@ -23,12 +23,18 @@
 								<img src="assets/imgs/Michaela.png">
 							</ion-avatar>
 							<ion-label>Michaela</ion-label>
-							<button ion-button icon-only item-end clear  (click)="editItem(item)">
-							 	<ion-icon name="create"></ion-icon>
-							</button>
 						</ion-item>
 						<ion-item-options>
-							<button ion-button expandable color="danger" (click)="deleteItem(item)">Delete</button>
+							<button ion-button color="warning" (click)="editItem(item)">
+								<span class="button-inner">
+									<ion-icon name="create"></ion-icon>Edit
+								</span>
+							</button>
+							<button ion-button expandable color="danger" (click)="deleteItem(item)">
+								<span class="button-inner">
+									<ion-icon name="trash" ion-icon></ion-icon>Delete
+								</span>
+          					</button>
 						</ion-item-options>
 					</ion-item-sliding> 
 					<ion-item>

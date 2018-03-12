@@ -30,13 +30,15 @@ export class PlayersPage {
     });
   }
 
-  deleteItem(){
+  deleteItem(item: ItemSliding){
     //ToDo: Delete element in list
     console.log("delete");
+    item.close();
   }
 
-  editItem(){
+  editItem(item: ItemSliding){
     //ToDo: Edit element in list
     console.log("edit");
+    item.close();
   }
 }
