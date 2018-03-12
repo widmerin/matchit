@@ -30,5 +30,10 @@ export class PlayersPage {
     });
   }
 
+  delete(){
+    //ToDo: Delete element in list
+
+  }
+
 
 }
