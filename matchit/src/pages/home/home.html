@@ -17,15 +17,15 @@
     <!--Players-->
     <ion-row>
       <ion-col col-5>
-          <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="players">
+          <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="playerLeft">
             <ion-option *ngFor="let player of players" #item value="{{player.name}}">{{player.name}}</ion-option>
           </ion-select>
       </ion-col>
       <ion-col col-2>
-        <strong>vs.</strong>
+        <strong><br>vs.</strong>
       </ion-col>
       <ion-col col-5>
-          <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="players">
+          <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="playerRight">
             <ion-option *ngFor="let player of players" #item value="{{player.name}}">{{player.name}}</ion-option>
           </ion-select>
       </ion-col>
@@ -39,7 +39,7 @@
         </ion-select>
       </ion-col>
       <ion-col col-2>
-        <strong>:</strong>
+        <strong><br>:</strong>
       </ion-col>
       <ion-col col-5>
           <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="scoreRight">

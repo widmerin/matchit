@@ -13,7 +13,7 @@ export class HomePage {
   players: any[];
   
   constructor(public navCtrl: NavController) {
-    for (let index = this.scoreMin; index <= this.scoreMax; index++) {
+    for (let index = this.scoreMax; index >= this.scoreMin; index--) {
       this.scoreRange.push(index);
     }
     this.players = [
