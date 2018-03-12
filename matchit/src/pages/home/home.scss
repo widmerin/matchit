@@ -1,3 +1,8 @@
 page-home {
-
+    ion-col{
+        text-align: center;
+    }
+    ion-row.row:nth-child(2) > ion-col:nth-child(3) > ion-select:nth-child(1) > button:nth-child(3){
+        width: 100% !important;
+    }
 }
