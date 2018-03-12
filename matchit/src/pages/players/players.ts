@@ -8,6 +8,8 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 })
 export class PlayersPage {
 
+  players: any[];
+
   private options: CameraOptions = {
     quality: 100,
     destinationType: this.camera.DestinationType.DATA_URL,
@@ -17,6 +19,14 @@ export class PlayersPage {
 
 
   constructor(public navCtrl: NavController, private camera: Camera) {
+    this.players = [
+    {
+      img: './assets/imgs/Michaela.png',
+      name: 'Michaela'
+    }, {
+      img: './assets/imgs/Melanie.png',
+      name: 'Melanie'
+    }];
 
   }
 
@@ -32,13 +42,17 @@ export class PlayersPage {
 
   deleteItem(item: ItemSliding){
     //ToDo: Delete element in list
-    console.log("delete");
+    let index = this.players.indexOf(item);
+
+    if(index > -1){
+      this.players.splice(index, 1);
+    }
     item.close();
   }
 
   editItem(item: ItemSliding){
     //ToDo: Edit element in list
-    console.log("edit");
+    console.log("edit"+item.name);
     item.close();
   }
 }

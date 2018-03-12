@@ -17,12 +17,12 @@
 			<ion-col col-12>
 				<ion-list>
 					<!-- 1 item hard coded -->
-					<ion-item-sliding (ionSwipe)="delete(item)">
+					 <ion-item-sliding *ngFor="let player of players" #item>
 						<ion-item>
 							<ion-avatar item-start (click)="takePicture()">
-								<img src="assets/imgs/Michaela.png">
+								<img [src]="player.img">
 							</ion-avatar>
-							<ion-label>Michaela</ion-label>
+							<ion-label>{{player.name}}</ion-label>
 						</ion-item>
 						<ion-item-options>
 							<button ion-button color="warning" (click)="editItem(item)">
