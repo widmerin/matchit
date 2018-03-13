@@ -50,7 +50,7 @@ export class PlayersPage {
   }
 
   editItem(slidingItem: ItemSliding, person){
-    console.log(editItem);
+    //console.log(editItem);
     slidingItem.close();
   }
 }
