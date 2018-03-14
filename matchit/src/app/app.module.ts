@@ -8,10 +8,12 @@ import { StatsPage } from '../pages/stats/stats';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
-import { Camera } from '@ionic-native/camera';
+import { Camera } from '@ionic-native/camera';  
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { PlayerModalPage } from '../pages/players/modal-page';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     PlayersPage,
     StatsPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    PlayerModalPage
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     PlayersPage,
     StatsPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    PlayerModalPage
   ],
   providers: [
     Camera,    

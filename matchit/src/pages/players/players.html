@@ -16,39 +16,26 @@
 		<ion-row>
 			<ion-col col-12>
 				<ion-list>
-					<!-- 1 item hard coded -->
-					 <ion-item-sliding *ngFor="let player of players" #slidingItem>
-						<ion-item>
-							<ion-avatar item-start (click)="takePicture()">
-								<img [src]="player.img">
-							</ion-avatar>
-							<ion-label>{{player.name}}</ion-label>
-						</ion-item>
-						<ion-item-options>
-							<button ion-button color="warning" (click)="editItem(slidingItem, player)">
-								<span class="button-inner">
-									<ion-icon name="create"></ion-icon>Edit
-								</span>
-							</button>
-							<button ion-button expandable color="danger" (click)="deleteItem(slidingItem, player)">
-								<span class="button-inner">
-									<ion-icon name="trash" ion-icon></ion-icon>Delete
-								</span>
-          					</button>
-						</ion-item-options>
-					</ion-item-sliding> 
-					<ion-item>
-						<ion-avatar item-start (click)="takePicture()">
-							<ion-icon name="add-circle"></ion-icon>
-						</ion-avatar>
-						<ion-label stacked>playername</ion-label>
-						<ion-input type="text"></ion-input>
-					</ion-item>
-				</ion-list>
-			</ion-col>
-
-		</ion-row>
-	</ion-grid>
-
-
+          <ion-item-sliding *ngFor="let player of players" #slidingItem (ionSwipe)="deleteItem(player, slidingItem)">">
+            <ion-item (click)="openModal(player)">
+             <ion-avatar item-start>
+              <img [src]="player.img">
+            </ion-avatar>
+            <ion-label>{{player.name}}</ion-label>
+          </ion-item>
+          <ion-item-options>
+           <button ion-button color="danger" expandable (click)="deleteItem(player, slidingItem)">
+            <span class="button-inner">
+             <ion-icon name="trash" ion-icon></ion-icon>Delete
+           </span>
+         </button>
+       </ion-item-options>
+     </ion-item-sliding> 
+   </ion-list>
+ </ion-col>
+</ion-row>
+</ion-grid>
+<ion-fab right bottom>
+  <button ion-fab color="danger" (click)="openModal()"><ion-icon name="add"></ion-icon></button>
+</ion-fab>
 </ion-content>

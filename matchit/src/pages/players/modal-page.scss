@@ -1,0 +1,18 @@
+modal-page {
+	.user-img {
+	    height: 50vw; 
+	    width: 50vw; 
+	    max-height: 200px;
+	    max-width: 200px;
+	    border-radius: 50%;
+	    display: inline-block;
+	    margin-left: auto;
+	    margin-right: auto;
+	}
+
+	ion-icon[name=camera] { 
+		font-size: 50px;
+		margin-left: -25px;
+	} 
+
+}

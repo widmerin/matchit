@@ -2,4 +2,9 @@ page-players {
     ion-avatar{
         font-size: 50px;
     }
+    ion-item-sliding {
+    	.item-md {
+    		padding-left: 0;
+    	}
+    }
 }
