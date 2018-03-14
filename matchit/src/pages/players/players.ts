@@ -72,5 +72,4 @@ export class PlayersPage {
     this.players.splice(index, 1);
     slidingItem.close();
   }
-
 }
