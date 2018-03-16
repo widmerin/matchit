@@ -22,11 +22,11 @@ export class PlayersPage {
   constructor(public navCtrl: NavController, private camera: Camera, public modalCtrl: ModalController) {
     this.players = [
     {
-      id: '0', 
+      id: '1', 
       img: './assets/imgs/Michaela.png',
       name: 'Michaela'
     }, {
-      id: '1',
+      id: '2',
       img: './assets/imgs/Melanie.png',
       name: 'Melanie'
     }];
@@ -38,7 +38,8 @@ export class PlayersPage {
 
     myModal.onDidDismiss(player => {
       if(player && player !== 'null' && player !== 'undefined') {
-        if(player.id > -1){
+        console.log("onDidDismiss"+player.name);
+        if(player.id > 0){
           //Update player
            for (var i in this.players) {
              if (this.players[i].id == player.id) {

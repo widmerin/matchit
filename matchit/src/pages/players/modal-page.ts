@@ -8,14 +8,14 @@ import { NavParams, ViewController } from 'ionic-angular';
 export class PlayerModalPage {
     buttonText = "Add Player";
     newPlayer = {
-      id: '',
+      id: '0',
       img: './assets/imgs/avatar.png',
       name: ''
     };
     
 
   constructor(public navParams: NavParams, public viewCtrl: ViewController) {
-    if(this.navParams.get('id') > -1){
+    if(this.navParams.get('id') >0){
       this.buttonText = "Update Player";
       this.newPlayer = {
         id: this.navParams.get('id'),
