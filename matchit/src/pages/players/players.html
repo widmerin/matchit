@@ -19,7 +19,7 @@
           <ion-item-sliding *ngFor="let player of players" #slidingItem (ionSwipe)="deleteItem(player, slidingItem)">">
             <ion-item (click)="openModal(player)">
              <ion-avatar item-start>
-              <img [src]="player.img">
+              <img [src]="player.img" (click)="takePicture()">
             </ion-avatar>
             <ion-label>{{player.name}}</ion-label>
           </ion-item>
