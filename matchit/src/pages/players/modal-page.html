@@ -19,7 +19,7 @@
         
         <ion-list>
           <div text-center>
-            <div class="user-img"> <img [src]="this.newPlayer.img"><ion-icon name="camera" ion-icon></ion-icon></div>
+            <div class="user-img" (click)="takePicture()"> <img [src]="this.newPlayer.img"><ion-icon name="camera" ion-icon></ion-icon></div>
           </div>
           <ion-item>
             <ion-label floating requried>Name</ion-label>
