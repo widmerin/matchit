@@ -2,10 +2,19 @@ page-home {
     ion-col{
         text-align: center;
     }
+    ion-row{
+        height: 75px;
+    }
     ion-select{
         max-width: 100%;
     }
     ion-header{
         background-color: black;
     }
+    .bgimg{
+        background-image: url('../../assets/imgs/wilson.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+   }
+ 
 }
