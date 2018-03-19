@@ -1,13 +1,12 @@
 page-home {
-    ion-select{
+    ion-col{
+        text-align: center;
+    }
+
+    ion-select {
         max-width: 100%;
     }
 
-    //fails
-    ion-header{
-        background-color: black;
-    }
-    
     .bgimg{
         background-image: url('../../assets/imgs/wilson.jpg');
         background-repeat: no-repeat;

@@ -15,22 +15,36 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+ion-header {
+	ion-col{
+        text-align: center;
+    }
+    .toolbar-background-md {
+        background: color($colors, dark);
+        border-color: color($colors, dark);
+    }
+    .toolbar-content {
+        background-color: color($colors, dark);
+        min-height: 60px;
+        vertical-align: middle;
+        .toolbar-title{
 
+        }
+        ion-row {
+            background: transparent;
+            .logo {
+                max-width: 35px;
+            }
+            .toolbar-title-md{
+                color: #FFF;
+                text-align: left;
+                padding-top: 6px;
+            }
+            
+        }
+    }
+}
 
-
-.toolbar-content {
-	background-color: #333333;
-	.logo {
-		max-width: 35px;
-	}
-
-	ion-row {
-		background: transparent;
-		ion-title {
-			color: #FFF;
-		}
-		.toolbar-title-ios {
-			color: #FFF;
-		}
-	}
+button.button-md{
+	color: color($colors, dark);
 }
