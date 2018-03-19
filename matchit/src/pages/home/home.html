@@ -1,6 +1,15 @@
 <ion-header>
   <ion-navbar>
-    <ion-title><img src="assets/icon/favicon.ico" height="30px"/> Match it!</ion-title>
+      <ion-grid>
+          <ion-row>
+            <ion-col col-3>
+                <img src="assets/icon/favicon.ico" height="30px"/>
+              </ion-col>
+              <ion-col col-9>
+                  <ion-title>Match it!</ion-title>
+                </ion-col>
+          </ion-row>
+      </ion-grid>  
   </ion-navbar>
 </ion-header>
 
@@ -8,14 +17,13 @@
   <ion-grid>
     <ion-row>
       <ion-col col-12>
-        <p>
-          Track your match results.
-        </p>
+        <h4>
+          Track your match results
+        </h4>
       </ion-col>
     </ion-row>
-
     <!--Players-->
-    <ion-row>
+    <ion-row class="track">
       <ion-col col-5>
           <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="playerLeft">
             <ion-option *ngFor="let player of players" #item value="{{player.name}}">{{player.name}}</ion-option>
@@ -30,9 +38,8 @@
           </ion-select>
       </ion-col>
     </ion-row>
-
     <!--Scores-->
-    <ion-row>
+    <ion-row class="track">
       <ion-col col-5>
         <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="scoreLeft">
           <ion-option *ngFor="let score of scoreRange" #item value="{{score}}">{{score}}</ion-option>
@@ -47,13 +54,12 @@
           </ion-select>
       </ion-col>
     </ion-row>
-
     <!--Save Button-->
     <ion-row>
       <ion-col col-3>
       </ion-col>
       <ion-col col-6>
-        <button ion-button round outline>Save match</button>
+        <button ion-button round>Save match</button>
       </ion-col>
       <ion-col col-3>
       </ion-col>
