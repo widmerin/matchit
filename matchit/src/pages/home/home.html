@@ -26,7 +26,7 @@
     <ion-row class="track">
       <ion-col col-5>
           <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="playerLeft">
-            <ion-option *ngFor="let player of players" #item value="{{player.name}}">{{player.name}}</ion-option>
+            <ion-option *ngFor="let player of players | async" #item value="{{player.value}}">{{player.name}}</ion-option>
           </ion-select>
       </ion-col>
       <ion-col col-2>
@@ -34,7 +34,7 @@
       </ion-col>
       <ion-col col-5>
           <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="playerRight">
-            <ion-option *ngFor="let player of players" #item value="{{player.name}}">{{player.name}}</ion-option>
+            <ion-option *ngFor="let player of players | async" #item value="{{player.value}}">{{player.name}}</ion-option>
           </ion-select>
       </ion-col>
     </ion-row>
