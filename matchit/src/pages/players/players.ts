@@ -39,15 +39,17 @@ export class PlayersPage {
     myModal.onDidDismiss(player => {
       if(player && player !== 'null' && player !== 'undefined') {
         console.log("onDidDismiss"+player.name);
-        if(player.id > 0){
+        if(player.key > 0){
           //Update player
-           for (var i in this.players) {
+          this.firebaseService.updateItem(player.key, {name: player.name, img: player.img});
+          /* for (var i in this.players) {
              if (this.players[i].key == player.key) {
                 this.players[i].img = player.img;
                 this.players[i].name = player.name;
                 break; 
              }
            }
+           */
         } else {
           //Add new player
           //player.id = this.players.length; //ToDo: Repalce id with DB id
