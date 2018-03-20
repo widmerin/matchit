@@ -8,8 +8,6 @@ import { Observable } from 'rxjs/Observable';
   templateUrl: 'home.html'
 })
 
-
-
 export class HomePage {
 
   @ViewChild(Content) content: Content;
@@ -18,23 +16,12 @@ export class HomePage {
   scoreMin = 0;
   scoreMax = 15;
   players: Observable<any[]>;
-
   
   constructor(public navCtrl: NavController, public firebaseService: FirebaseServiceProvider) {
     for (let index = this.scoreMax; index >= this.scoreMin; index--) {
       this.scoreRange.push(index);
     }
     this.players = this.firebaseService.getItems();
-    console.log(this.players);
-    /*this.players = [
-      {
-        img: './assets/imgs/Michaela.png',
-        name: 'Michaela'
-      }, {
-        img: './assets/imgs/Melanie.png',
-        name: 'Melanie'
-      }];
-     */
   }
 
 }
