@@ -41,7 +41,7 @@ export class PlayersPage {
         console.log("onDidDismiss"+player.name);
         if(player.key > 0){
           //Update player
-          this.firebaseService.updateItem(player.key, {name: player.name, img: player.img});
+          this.firebaseService.updateItem(player.key, player);
           /* for (var i in this.players) {
              if (this.players[i].key == player.key) {
                 this.players[i].img = player.img;
