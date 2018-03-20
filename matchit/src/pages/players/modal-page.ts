@@ -9,7 +9,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 export class PlayerModalPage {
     buttonText = "Add Player";
     newPlayer = {
-      id: '0',
+      key: 0,
       img: './assets/imgs/avatar.png',
       name: ''
     };
@@ -23,10 +23,10 @@ export class PlayerModalPage {
     
 
   constructor(public navParams: NavParams, public viewCtrl: ViewController, private camera: Camera) {
-    if(this.navParams.get('id') >0){
+    if(this.navParams.get('key') >0){
       this.buttonText = "Update Player";
       this.newPlayer = {
-        id: this.navParams.get('id'),
+        key: this.navParams.get('key'),
         img: this.navParams.get('img'),
         name: this.navParams.get('name')
       };

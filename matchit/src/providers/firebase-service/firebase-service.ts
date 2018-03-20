@@ -20,23 +20,22 @@ export class FirebaseServiceProvider {
     this.items = this.itemsRef.snapshotChanges().map(changes => {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
     });
+   // two players for debug/testing
+   // this.itemsRef.push({ name: 'Michaela', img: './assets/imgs/Michaela.png' });
+   // this.itemsRef.push({ name: 'Melanie', img: './assets/imgs/Melanie.png' });
+     
   }
 
   getItems() {
     return this.items;
   }
 
-  addItem(newName) {
-    return this.itemsRef.push({ value: newName, isDone: false });
+  addItem(player) {
+    return this.itemsRef.push({ name: player.name, img: player.img });
   }
 
-  updateItem(key, newText) {
-    return this.itemsRef.update(key, { value: newText });
-  }
-
-  //sets an item to done or undone
-  doneItem(key, status) {
-    return this.itemsRef.update(key, { isDone: status });
+  updateItem(key, player) {
+    return this.itemsRef.update(key, { name: player.name, img: player.img });
   }
 
   deleteItem(key) {

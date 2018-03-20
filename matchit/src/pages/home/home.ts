@@ -15,7 +15,7 @@ export class HomePage {
   @ViewChild(Content) content: Content;
 
   scoreRange = [];
-  scoreMin = 1;
+  scoreMin = 0;
   scoreMax = 15;
   players: Observable<any[]>;
 
@@ -25,6 +25,7 @@ export class HomePage {
       this.scoreRange.push(index);
     }
     this.players = this.firebaseService.getItems();
+    console.log(this.players);
     /*this.players = [
       {
         img: './assets/imgs/Michaela.png',
