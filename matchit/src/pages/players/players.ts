@@ -32,8 +32,9 @@ export class PlayersPage {
     */
   }
 
+ 
   openModal(player) {
-
+/*
     let myModal = this.modalCtrl.create(PlayerModalPage, player);
 
     myModal.onDidDismiss(player => {
@@ -42,14 +43,14 @@ export class PlayersPage {
         if(player.key > 0){
           //Update player
           this.firebaseService.updateItem(player.key, player);
-          /* for (var i in this.players) {
+           for (var i in this.players) {
              if (this.players[i].key == player.key) {
                 this.players[i].img = player.img;
                 this.players[i].name = player.name;
                 break; 
              }
            }
-           */
+           
         } else {
           //Add new player
           //player.id = this.players.length; //ToDo: Repalce id with DB id
@@ -62,6 +63,7 @@ export class PlayersPage {
       }
     });
     myModal.present();
+    */
   }
 
   deleteItem(item, slidingItem: ItemSliding){
