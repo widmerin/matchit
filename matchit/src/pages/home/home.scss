@@ -11,6 +11,16 @@ page-home {
         background-image: url('../../assets/imgs/wilson.jpg');
         background-repeat: no-repeat;
         background-size: cover;
-   }
- 
+   }    
+   ion-avatar .player-img{
+        border-radius: 50%;
+        overflow: hidden;
+        width: 100px;
+        height: 100px;
+        display: inline-block;
+    }
+
+    .scroll-content ion-row {
+        padding-bottom: 16px;
+    }
 }

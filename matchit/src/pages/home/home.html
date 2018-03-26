@@ -25,16 +25,22 @@
     <!--Players-->
     <ion-row class="track">
       <ion-col col-5>
-          <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="playerLeft">
-            <ion-option *ngFor="let player of players | async" value="{{player.name}}">{{player.name}}</ion-option>
+          <ion-avatar item-start>
+              <img [src]="playerLeft.img" class="player-img">
+          </ion-avatar>
+          <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="playerLeft" placeholder="Player 1">
+            <ion-option *ngFor="let player of players | async" [value]="player">{{player.name}}</ion-option>
           </ion-select>
       </ion-col>
       <ion-col col-2>
         <strong><br>vs.</strong>
       </ion-col>
       <ion-col col-5>
-          <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="playerRight">
-            <ion-option *ngFor="let player of players | async" #item value="{{player.name}}">{{player.name}}</ion-option>
+          <ion-avatar item-start>
+            <img [src]="playerRight.img" class="player-img">
+          </ion-avatar>
+          <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="playerRight" placeholder="Player 2">
+            <ion-option *ngFor="let player of players | async"  [value]="player">{{player.name}}</ion-option>
           </ion-select>
       </ion-col>
     </ion-row>
