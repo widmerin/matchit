@@ -48,3 +48,7 @@ ion-header {
 button.button-md{
 	color: color($colors, dark);
 }
+
+ion-item-options button.button-md{
+    color: #FFF;
+}   

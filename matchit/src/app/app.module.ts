@@ -15,9 +15,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { PlayerModalPage } from '../pages/players/modal-page';
 import { FirebaseServiceProvider } from '../providers/firebase-service/firebase-service';
 
-import { AngularFireDatabaseModule, AngularFireList } from 'angularfire2/database';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireModule } from 'angularfire2';
-import { HttpModule, Http } from '@angular/http';
+import { HttpModule } from '@angular/http';
 
 
 // Initialize Firebase
