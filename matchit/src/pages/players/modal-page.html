@@ -1,25 +1,25 @@
 <ion-header>
   <ion-navbar>
-      <ion-grid>
-          <ion-row>
-            <ion-col col-2>
-                <img src="assets/imgs/logo.png" class="logo"/>
-              </ion-col>
-              <ion-col col-8>
-                <ion-title>
-                    {{ this.buttonText }}
-                </ion-title>
-                </ion-col>
-              <ion-col col-2>
-                <ion-buttons start>
-                  <button ion-button (click)="closeModal()">
-                    <span ion-text color="primary" showWhen="ios">Cancel</span>
-                    <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
-                  </button>
-                </ion-buttons>
-              </ion-col>
-          </ion-row>
-      </ion-grid>  
+    <ion-grid>
+      <ion-row>
+        <ion-col col-2>
+          <img src="assets/imgs/logo.png" class="logo" />
+        </ion-col>
+        <ion-col col-8>
+          <ion-title>
+            {{ this.buttonText }}
+          </ion-title>
+        </ion-col>
+        <ion-col col-2>
+          <ion-buttons start>
+            <button ion-button (click)="closeModal()">
+              <span ion-text color="primary" showWhen="ios">Cancel</span>
+              <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+            </button>
+          </ion-buttons>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-navbar>
 </ion-header>
 
@@ -28,27 +28,30 @@
   <ion-grid>
     <ion-row>
       <ion-col col-12>
-        
+
         <ion-list>
           <div text-center>
-            <div class="user-img" (click)="takePicture()"> <img [src]="this.newPlayer.img"><ion-icon name="camera" ion-icon></ion-icon></div>
+            <div class="user-img" (click)="takePicture()">
+              <img [src]="this.newPlayer.img">
+              <ion-icon name="camera" ion-icon></ion-icon>
+            </div>
           </div>
           <ion-item>
             <ion-label floating requried>Name</ion-label>
             <ion-input type="text" required [(ngModel)]="this.newPlayer.name"></ion-input>
           </ion-item>
-      </ion-list>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col col-2>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-2>
       </ion-col>
       <ion-col col-8>
-         <button ion-button block (click)="closeModal()" [disabled]="this.newPlayer.name.length === 0">{{ this.buttonText }}</button>
+        <button ion-button block (click)="closeModal()" [disabled]="this.newPlayer.name.length === 0">{{ this.buttonText }}</button>
       </ion-col>
       <ion-col col-2>
-    </ion-col>
-   </ion-row>
-</ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

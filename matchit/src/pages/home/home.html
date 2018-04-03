@@ -1,15 +1,15 @@
 <ion-header>
   <ion-navbar>
-      <ion-grid>
-          <ion-row>
-            <ion-col col-2>
-                <img src="assets/imgs/logo.png" class="logo"/>
-              </ion-col>
-              <ion-col col-10>
-                  <ion-title>Match it!</ion-title>
-                </ion-col>
-          </ion-row>
-      </ion-grid>  
+    <ion-grid>
+      <ion-row>
+        <ion-col col-2>
+          <img src="assets/imgs/logo.png" class="logo" />
+        </ion-col>
+        <ion-col col-10>
+          <ion-title>Match it!</ion-title>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-navbar>
 </ion-header>
 
@@ -25,23 +25,24 @@
     <!--Players-->
     <ion-row class="track">
       <ion-col col-5>
-          <ion-avatar item-start>
-              <img [src]="playerLeft.img" class="player-img">
-          </ion-avatar>
-          <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="playerLeft" placeholder="Player 1">
-            <ion-option *ngFor="let player of players | async" [value]="player">{{player.name}}</ion-option>
-          </ion-select>
+        <ion-avatar item-start>
+          <img [src]="playerLeft.img" class="player-img">
+        </ion-avatar>
+        <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="playerLeft" placeholder="Player 1">
+          <ion-option *ngFor="let player of players | async" [value]="player">{{player.name}}</ion-option>
+        </ion-select>
       </ion-col>
       <ion-col col-2>
-        <strong><br>vs.</strong>
+        <strong>
+          <br>vs.</strong>
       </ion-col>
       <ion-col col-5>
-          <ion-avatar item-start>
-            <img [src]="playerRight.img" class="player-img">
-          </ion-avatar>
-          <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="playerRight" placeholder="Player 2">
-            <ion-option *ngFor="let player of players | async"  [value]="player">{{player.name}}</ion-option>
-          </ion-select>
+        <ion-avatar item-start>
+          <img [src]="playerRight.img" class="player-img">
+        </ion-avatar>
+        <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="playerRight" placeholder="Player 2">
+          <ion-option *ngFor="let player of players | async" [value]="player">{{player.name}}</ion-option>
+        </ion-select>
       </ion-col>
     </ion-row>
     <!--Scores-->
@@ -52,12 +53,13 @@
         </ion-select>
       </ion-col>
       <ion-col col-2>
-        <strong><br>:</strong>
+        <strong>
+          <br>:</strong>
       </ion-col>
       <ion-col col-5>
-          <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="scoreRight">
-            <ion-option *ngFor="let score of scoreRange" #item value="{{score}}">{{score}}</ion-option>
-          </ion-select>
+        <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="scoreRight">
+          <ion-option *ngFor="let score of scoreRange" #item value="{{score}}">{{score}}</ion-option>
+        </ion-select>
       </ion-col>
     </ion-row>
     <!--Save Button-->

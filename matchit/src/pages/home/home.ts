@@ -17,26 +17,26 @@ export class HomePage {
   scoreMax = 15;
   playerLeft: any;
   playerRight: any;
-
-
   players: Observable<any[]>;
-  
+
   constructor(public navCtrl: NavController, public firebaseService: FirebaseServiceProvider) {
     for (let index = this.scoreMax; index >= this.scoreMin; index--) {
       this.scoreRange.push(index);
     }
+
     this.players = this.firebaseService.getItems();
-   this.playerLeft = {
+
+    this.playerLeft = {
       key: null,
       img: './assets/imgs/avatar.png',
       name: ''
-  };
+    };
 
-  this.playerRight = {
-    key: null,
-    img: './assets/imgs/avatar.png',
-    name: ''
-  };
+    this.playerRight = {
+      key: null,
+      img: './assets/imgs/avatar.png',
+      name: ''
+    };
 
   }
 
