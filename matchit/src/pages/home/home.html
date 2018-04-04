@@ -32,10 +32,7 @@
           <ion-option *ngFor="let player of players | async" [value]="player">{{player.name}}</ion-option>
         </ion-select>
       </ion-col>
-      <ion-col col-2>
-        <strong>
-          <br>vs.</strong>
-      </ion-col>
+      <ion-col col-2 class="vsPlayer">vs.</ion-col>
       <ion-col col-5>
         <ion-avatar item-start>
           <img [src]="playerRight.img" class="player-img">
@@ -47,16 +44,20 @@
     </ion-row>
     <!--Scores-->
     <ion-row class="track">
-      <ion-col col-5 class="score">
-        <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="scoreLeft">
-          <ion-option  *ngFor="let score of scoreRange" #item value="{{score}}">{{score}}</ion-option>
+      <ion-col col-2>
+      </ion-col>
+      <ion-col col-3 class="score">
+        <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="scoreLeft" placeholder="0">
+          <ion-option *ngFor="let score of scoreRange" #item value="{{score}}">{{score}}</ion-option>
         </ion-select>
       </ion-col>
       <ion-col col-2 class="score vs">:</ion-col>
-      <ion-col col-5 class="score">
-        <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="scoreRight">
-          <ion-option  *ngFor="let score of scoreRange" #item value="{{score}}">{{score}}</ion-option>
+      <ion-col col-3 class="score">
+        <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="scoreRight" placeholder="0">
+          <ion-option *ngFor="let score of scoreRange" #item value="{{score}}">{{score}}</ion-option>
         </ion-select>
+      </ion-col>
+      <ion-col col-2>
       </ion-col>
     </ion-row>
     <!--Save Button-->

@@ -26,16 +26,20 @@ page-home {
 
     .score{
         font-family: 'ds-digitalnormal';
-        font-size: 2.5em;
+        font-size: 2.7em;
         color: lightyellow;
         background-color:rgb(6, 6, 66);
         border-radius: 2px;
-        border: solid 1px lightyellow;
         padding: 0px;
     }
     .vs{
         padding-top: 0.3em;
-        border: solid 1px white;
+        font-weight: bold;
+       
+    }
+    .vsPlayer{
+        padding-top: 3.3em;
+        font-weight: bold;
        
     }
     .select-icon {
