@@ -47,18 +47,15 @@
     </ion-row>
     <!--Scores-->
     <ion-row class="track">
-      <ion-col col-5>
+      <ion-col col-5 class="score">
         <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="scoreLeft">
-          <ion-option *ngFor="let score of scoreRange" #item value="{{score}}">{{score}}</ion-option>
+          <ion-option  *ngFor="let score of scoreRange" #item value="{{score}}">{{score}}</ion-option>
         </ion-select>
       </ion-col>
-      <ion-col col-2>
-        <strong>
-          <br>:</strong>
-      </ion-col>
-      <ion-col col-5>
+      <ion-col col-2 class="score vs">:</ion-col>
+      <ion-col col-5 class="score">
         <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="scoreRight">
-          <ion-option *ngFor="let score of scoreRange" #item value="{{score}}">{{score}}</ion-option>
+          <ion-option  *ngFor="let score of scoreRange" #item value="{{score}}">{{score}}</ion-option>
         </ion-select>
       </ion-col>
     </ion-row>

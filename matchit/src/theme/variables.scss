@@ -87,3 +87,12 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+//@import "ds-digitalnormal"; //for scores
+
+@font-face {
+  font-family: 'ds-digitalnormal';
+  src: url('../assets/fonts/ds-digi-webfont.woff2') format('woff2'),
+       url('../assets/fonts/ds-digi-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
