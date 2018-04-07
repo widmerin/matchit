@@ -19,7 +19,9 @@ export class PlayerModalPage {
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
       allowEdit: true,
-      saveToPhotoAlbum: false
+      saveToPhotoAlbum: false,
+      targetWidth: 600,
+      targetHeight: 600
     }
     
 
