@@ -18,6 +18,8 @@ export class HomePage {
   playerLeft: any;
   playerRight: any;
   players: Observable<any[]>;
+  match: any;
+  isMatchInvalid = true;
 
   constructor(public navCtrl: NavController, public firebaseService: FirebaseServiceProvider) {
     for (let index = this.scoreMax; index >= this.scoreMin; index--) {
@@ -38,6 +40,19 @@ export class HomePage {
       name: ''
     };
 
+    this.match = {
+      datetime: null,
+      scoreLeft: 0,
+      playerLeft: this.playerLeft.key,
+      scoreRight: 0,
+      playerRight: this.playerRight.key
+    }
+
+  }
+
+  getMatchInvalid() {
+    this.isMatchInvalid = this.match.scoreRight === 0; //&& this.match.scoreLeft === 0 || this.match.playerLeft === null || this.match.playerRight === null;
   }
 
 }
+
