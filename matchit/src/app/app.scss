@@ -29,10 +29,10 @@ ion-header {
         vertical-align: middle;
         ion-title {
             padding: 0 30px 1px;
+            vertical-align: middle;
+            height: 100%;
             .toolbar-title{
                 color: #FFF;
-                vertical-align: middle;
-                height: 100%;
             }
         }
         ion-row {
