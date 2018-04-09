@@ -43,7 +43,7 @@ export class PlayersPage {
         if(player.key != null){
           //Update player
           this.firebaseService.updateItem(player.key, player);           
-        } else if(player.name && player.name !== 'null' && player.name !== 'undefined') {
+        } else {
           //Add new player
           this.firebaseService.addItem(player);
         }

@@ -35,9 +35,14 @@ export class PlayerModalPage {
       };
     }
   }
-  closeModal(newPlayer) {
+  closeModal() {
+    this.viewCtrl.dismiss();
+  }
+
+  saveModal(newPlayer) {
     this.viewCtrl.dismiss(this.newPlayer);
   }
+
 
   takePicture() {
     this.camera.getPicture(this.options).then((imageData) => {
