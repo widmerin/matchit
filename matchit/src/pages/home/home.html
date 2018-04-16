@@ -27,18 +27,18 @@
     <ion-row class="track">
       <ion-col col-5>
         <ion-avatar item-start>
-          <img [src]="playerLeft.img" class="player-img">
+          <img [src]="score.playerLeft.img" class="player-img">
         </ion-avatar>
-        <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="playerLeft" placeholder="Player 1">
+        <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="score.playerLeft" placeholder="Player 1">
           <ion-option *ngFor="let player of players | async" [value]="player">{{player.name}}</ion-option>
         </ion-select>
       </ion-col>
       <ion-col col-2 class="vsPlayer">vs.</ion-col>
       <ion-col col-5>
         <ion-avatar item-start>
-          <img [src]="playerRight.img" class="player-img">
+          <img [src]="score.playerRight.img" class="player-img">
         </ion-avatar>
-        <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="playerRight" placeholder="Player 2">
+        <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="score.playerRight" placeholder="Player 2">
           <ion-option *ngFor="let player of players | async" [value]="player">{{player.name}}</ion-option>
         </ion-select>
       </ion-col>
@@ -48,13 +48,13 @@
       <ion-col col-2>
       </ion-col>
       <ion-col col-3 class="score">
-        <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="match.scoreLeft" placeholder="0">
+        <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="score.scoreLeft" placeholder="0">
           <ion-option *ngFor="let score of scoreRange" #item [value]="score">{{score}}</ion-option>
         </ion-select>
       </ion-col>
       <ion-col col-2 class="score vs">:</ion-col>
       <ion-col col-3 class="score">
-        <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="match.scoreRight" placeholder="0">
+        <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="score.scoreRight" placeholder="0">
           <ion-option *ngFor="let score of scoreRange" #item [value]="score">{{score}}</ion-option>
         </ion-select>
       </ion-col>
@@ -66,7 +66,7 @@
       <ion-col col-2>
       </ion-col>
       <ion-col col-8>
-        <button ion-button block [disabled]=getMatchInvalid()>Save match</button>
+        <button ion-button block  (click)="saveScore()" [disabled]=getMatchInvalid()>Save match</button>
       </ion-col>
       <ion-col col-2>
       </ion-col>

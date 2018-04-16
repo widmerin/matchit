@@ -18,18 +18,6 @@ export class PlayersPage {
   constructor(public navCtrl: NavController, public modalCtrl: ModalController, public firebaseService: FirebaseServiceProvider) {
     
     this.players = this.firebaseService.getItems();
-    /*
-    this.players = [
-    {
-      id: '1', 
-      img: './assets/imgs/Michaela.png',
-      name: 'Michaela'
-    }, {
-      id: '2',
-      img: './assets/imgs/Melanie.png',
-      name: 'Melanie'
-    }];
-    */
   }
 
  
