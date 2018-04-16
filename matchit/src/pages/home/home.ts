@@ -18,7 +18,7 @@ export class HomePage {
   playerLeft: any;
   playerRight: any;
   players: Observable<any[]>;
-  match: any;
+  score: any;
 
   constructor(public navCtrl: NavController, public firebaseService: FirebaseServiceProvider) {
     for (let index = this.scoreMax; index >= this.scoreMin; index--) {
@@ -39,12 +39,12 @@ export class HomePage {
       name: ''
     };
 
-    this.match = {
+    this.score = {
       datetime: null,
       scoreLeft: null,
-      playerLeft: this.playerLeft.key,
+      playerLeft: this.playerLeft,
       scoreRight: null,
-      playerRight: this.playerRight.key
+      playerRight: this.playerRight
     }
 
   }
@@ -53,14 +53,24 @@ export class HomePage {
     //return invalid
     return !(// valid conditions:
       //not null 
-      (this.match.scoreRight !== null && this.match.scoreLeft !== null
-        && this.match.playerLeft !== null && this.match.playerRight !== null)
+      (this.score.scoreRight !== null && this.score.scoreLeft !== null
+        && this.score.playerLeft.key !== null && this.score.playerRight.key !== null)
       //valid scores
-      || (this.match.scoreRight < 15 && this.match.scoreLeft === 15)
-      || (this.match.scoreRight === 15 && this.match.scoreLeft < 15)
-      || (this.match.scoreRight === 9 && this.match.scoreLeft === 0)
-      || (this.match.scoreRight === 0 && this.match.scoreLeft === 9)
+      || (this.score.scoreRight < 15 && this.score.scoreLeft === 15)
+      || (this.score.scoreRight === 15 && this.score.scoreLeft < 15)
+      || (this.score.scoreRight === 9 && this.score.scoreLeft === 0)
+      || (this.score.scoreRight === 0 && this.score.scoreLeft === 9)
     )
   }
 
+  saveScore(){
+    if(!this.getMatchInvalid()) {
+       this.firebaseService.addScore(this.score);
+
+      //reset score
+      this.score.scoreLeft = null;
+      this.score.scoreRight = null;
+    }
+
+  }
 }
