@@ -54,16 +54,18 @@ export class HomePage {
     return !(// valid conditions:
       //not null 
       (this.score.scoreRight !== null && this.score.scoreLeft !== null
-        && this.score.playerLeft.key !== null && this.score.playerRight.key !== null)
+        && this.score.playerLeft.key !== null && this.score.playerRight.key !== null) &&
       //valid scores
-      || (this.score.scoreRight < 15 && this.score.scoreLeft === 15)
-      || (this.score.scoreRight === 15 && this.score.scoreLeft < 15)
-      || (this.score.scoreRight === 9 && this.score.scoreLeft === 0)
-      || (this.score.scoreRight === 0 && this.score.scoreLeft === 9)
+      ((this.score.scoreRight < 15 && this.score.scoreLeft === 15)
+        || (this.score.scoreRight === 15 && this.score.scoreLeft < 15)
+        || (this.score.scoreRight === 9 && this.score.scoreLeft === 0)
+        || (this.score.scoreRight === 0 && this.score.scoreLeft === 9)
+      )
     )
   }
 
   saveScore(){
+    console.log(this.score);
     if(!this.getMatchInvalid()) {
        this.firebaseService.addScore(this.score);
 
