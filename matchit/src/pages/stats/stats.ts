@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { FirebaseServiceProvider } from './../../providers/firebase-service/firebase-service';
 import { Observable } from 'rxjs/Observable';
 
@@ -9,6 +10,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class StatsPage {
   players: Observable<any[]>;
+  scores: Observable<any[]>;
   playerStat: any;
   canvasSize = 100;
 
@@ -21,8 +23,11 @@ export class StatsPage {
   // Reference the context for the Canvas element
   private _CONTEXT: any;
 
-  constructor(public navCtrl: NavController, public firebaseService: FirebaseServiceProvider) {
+  constructor(public navCtrl: NavController, public firebaseService: FirebaseServiceProvider, public db: AngularFireDatabase) {
     this.players = this.firebaseService.getItems();
+    //this.scores = db.list('list').valueChanges(); 
+    
+    
 
     this.playerStat = {
       key: null,
@@ -91,7 +96,6 @@ export class StatsPage {
     let centerx = 0;
     let centery = 0;
     const initialWidth = canvas.width;
-    //const getCSS = propname => window.getComputedStyle(canvas, null).getPropertyValue(propname).toString().trim();
     const fullRad = 2.0 * Math.PI;
     const adjust = fraction => (fraction - 0.25) * fullRad;
 
@@ -139,6 +143,23 @@ export class StatsPage {
       canvas.height = canvas.width;
       paint()
     }
+
+
   }
 
+   /**
+    * Calculate stats for current selected player
+    *
+    * @public
+    * @method updateStats
+    * @return {none}
+    */
+   updateStats(key): void {
+     
+      let games = this.db.list('scores', ref => ref.orderByChild('key').equalTo(this.playerStat.key));
+      console.log(games);
+     
+      //let games = this.scores.filter(s => s[0].playerLeft===this.playerStat.key);
+  }
+   
 }

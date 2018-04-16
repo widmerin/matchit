@@ -22,7 +22,7 @@
         <ion-avatar item-start>
           <img [src]="playerStat.img" class="player-img">
         </ion-avatar>
-        <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="playerStat" placeholder="choose Player">
+        <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="playerStat" placeholder="choose Player" (ngModelChange)="updateStats()" >
           <ion-option *ngFor="let player of players | async" [value]="player">{{player.name}}</ion-option>
         </ion-select>
       </ion-col>
