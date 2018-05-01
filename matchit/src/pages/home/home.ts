@@ -25,7 +25,7 @@ export class HomePage {
       this.scoreRange.push(index);
     }
 
-    this.players = this.firebaseService.getItems();
+    this.players = this.firebaseService.getPlayers();
 
     this.playerLeft = {
       key: null,
