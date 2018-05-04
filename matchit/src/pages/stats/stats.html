@@ -1,51 +1,54 @@
 <ion-header>
   <ion-navbar>
-      <ion-grid>
-          <ion-row>
-            <ion-col col-2>
-                <img src="assets/imgs/logo.png" class="logo"/>
-              </ion-col>
-              <ion-col col-8>
-                <ion-title>Statistics</ion-title>
-              </ion-col>
-              <ion-col col-2></ion-col>
-          </ion-row>
-      </ion-grid>  
+    <ion-grid>
+      <ion-row>
+        <ion-col col-2>
+          <img src="assets/imgs/logo.png" class="logo" />
+        </ion-col>
+        <ion-col col-8>
+          <ion-title>Statistics</ion-title>
+        </ion-col>
+        <ion-col col-2></ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-grid>
     <ion-row class="track">
-  
       <ion-col col-4>
         <ion-avatar item-start>
           <img [src]="playerStat.img" class="player-img">
         </ion-avatar>
-        <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="playerStat" placeholder="choose Player" (ngModelChange)="updateStats()" >
+        <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="playerStat" placeholder="choose Player" (ngModelChange)="updateStats()">
           <ion-option *ngFor="let player of players | async" [value]="player">{{player.name}}</ion-option>
         </ion-select>
       </ion-col>
       <ion-col col-1>
-        </ion-col>
-        <ion-col col-7>
-            <div class="ion-canvas">
-                <canvas #canvas></canvas>
-            </div>
-          
-            <script>
-              progressPie();
-              </script>
-          </ion-col>  
-      </ion-row>
-    <ion-row>
-      <ion-col col-6>
       </ion-col>
-      <ion-col col-6>
+      <ion-col col-7>
+        <div class="ion-canvas">
+          <canvas #canvas></canvas>
+        </div>
+        <script>
+          progressPie();
+        </script>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12>
+        <p>debug list</p>
+        <ion-content>
+          <ion-list>
+            <ion-item *ngFor="let score of scores | async">
+              <h2>{{ score.scoreLeft }}</h2>
+            </ion-item>
+          </ion-list>
+        </ion-content>
       </ion-col>
     </ion-row>
   </ion-grid>
-
-
 
 </ion-content>
