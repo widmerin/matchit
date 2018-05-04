@@ -24,7 +24,7 @@ export class StatsPage {
   private _CONTEXT: any;
 
   constructor(public navCtrl: NavController, public firebaseService: FirebaseServiceProvider, public db: AngularFireDatabase) {
-    this.players = this.firebaseService.getItems();
+    this.players = this.firebaseService.getPlayers();
     //this.scores = db.list('list').valueChanges(); 
     
     

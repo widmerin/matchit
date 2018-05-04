@@ -17,7 +17,7 @@ export class PlayersPage {
 
   constructor(public navCtrl: NavController, public modalCtrl: ModalController, public firebaseService: FirebaseServiceProvider) {
     
-    this.players = this.firebaseService.getItems();
+    this.players = this.firebaseService.getPlayers();
   }
 
  
@@ -30,10 +30,10 @@ export class PlayersPage {
         console.log("onDidDismiss"+player.name);
         if(player.key != null){
           //Update player
-          this.firebaseService.updateItem(player.key, player);           
+          this.firebaseService.updatePlayer(player.key, player);           
         } else {
           //Add new player
-          this.firebaseService.addItem(player);
+          this.firebaseService.addPlayer(player);
         }
       }
     });
@@ -42,8 +42,8 @@ export class PlayersPage {
   }
 
   deleteItem(item, slidingItem: ItemSliding){
-    this.firebaseService.deleteItem(item.key);
-    this.players = this.firebaseService.getItems();
+    this.firebaseService.deletePlayer(item.key);
+    this.players = this.firebaseService.getPlayers();
     slidingItem.close();
   }
 }

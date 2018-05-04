@@ -11,22 +11,21 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class FirebaseServiceProvider {
 
-  itemsRef: AngularFireList<any>;
+  playersRef: AngularFireList<any>;
   scoreRef: AngularFireList<any>;
-  items: Observable<any[]>;
+  players: Observable<any[]>;
   scores: Observable<any[]>;
 
   constructor(public afd: AngularFireDatabase) {
-    this.itemsRef = this.afd.list('/players/');
+    this.playersRef = this.afd.list('/players/');
     this.scoreRef = this.afd.list('/scores/');
-    //this.scoreRef = this.adf.list('/scores/');
-
-    this.items = this.itemsRef.snapshotChanges().map(changes => {
+  
+    this.players = this.playersRef.snapshotChanges().map(changes => {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
     });
 
-    // this.itemsRef.push({ name: 'Michaela', img: './assets/imgs/Michaela.png' });
-    // this.itemsRef.push({ name: 'Melanie', img: './assets/imgs/Melanie.png' });
+    // this.playersRef.push({ name: 'Michaela', img: './assets/imgs/Michaela.png' });
+    // this.playersRef.push({ name: 'Melanie', img: './assets/imgs/Melanie.png' });
 
  
     this.scores = this.scoreRef.snapshotChanges().map(changes => {
@@ -40,8 +39,8 @@ export class FirebaseServiceProvider {
      
   }
 
-  getItems() {
-    return this.items;
+  getPlayers() {
+    return this.players;
   }
 
 
@@ -49,15 +48,14 @@ export class FirebaseServiceProvider {
     return this.scores;
   }
 
-  addItem(player) {
-    return this.itemsRef.push({ 
+  addPlayer(player) {
+    return this.playersRef.push({ 
       name: player.name, 
       img: player.img 
     });
   }
 
   addScore(score) {
-    console.log(score);
     return this.scoreRef.push({ 
       playerLeft: score.playerLeft.key, 
       playerRight: score.playerRight.key, 
@@ -67,16 +65,16 @@ export class FirebaseServiceProvider {
     });
   }
 
-  updateItem(key, player) {
-    return this.itemsRef.update(
+  updatePlayer(key, player) {
+    return this.playersRef.update(
       key, { 
         name: player.name, 
         img: player.img 
       });
   }
 
-  deleteItem(key) {
-    this.itemsRef.remove(key);
+  deletePlayer(key) {
+    this.playersRef.remove(key);
   }
 
 }
