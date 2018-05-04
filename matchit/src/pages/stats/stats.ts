@@ -13,17 +13,17 @@ export class StatsPage {
   playerStat: any;
   canvasSize = 100;
 
-/**
-    * Scores are stored like this:
-    * 
-    * {
-        "Date" : 1523883941918,
-        "playerLeft" : "-LADVQHHbBxSaRT5uM2u",
-        "playerRight" : "-LADVQHN9hF26wQt4FkJ",
-        "scoreLeft" : 15,
-        "scoreRight" : 9
-      }
-    */
+  /**
+      * Scores are stored like this:
+      * 
+      * {
+          "Date" : 1523883941918,
+          "playerLeft" : "-LADVQHHbBxSaRT5uM2u",
+          "playerRight" : "-LADVQHN9hF26wQt4FkJ",
+          "scoreLeft" : 15,
+          "scoreRight" : 9
+        }
+      */
 
 
   // 'plug into' DOM canvas element using @ViewChild
@@ -154,7 +154,11 @@ export class StatsPage {
       paint()
     }
 
-
   }
-   
+
+  updateStats(key): void {
+    //let games = this.scores.filter(s => s[0].playerLeft===this.playerStat.key);
+    console.log("Player choosen");
+  }
+
 }
