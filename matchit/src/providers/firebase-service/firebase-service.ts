@@ -79,7 +79,7 @@ export class FirebaseServiceProvider {
 
   getScoreForPlayer(key){
     return this.scores.map(items => 
-      items.filter(score => score.playerLeft === key));
+      items.filter(score => score.playerLeft === key || score.playerRight === key));
   }
 
 }
