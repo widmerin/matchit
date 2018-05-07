@@ -12,9 +12,10 @@ export class StatsPage {
   players: Observable<any[]>;
   scores: Observable<any[]>;
   scoresForPlayer: Observable<any[]>;
+  gameCount: Int;
   playerStat: any;
   canvasSize = 100;
-
+ 
   /**
       * Scores are stored like this:
       * 
@@ -45,24 +46,22 @@ export class StatsPage {
       img: './assets/imgs/avatar.png',
       name: ''
     };
+    this.gameCount = 0;
   }
 
+  getScoreForPlayer(key){
+    return this.scores.map(items => 
+      items.filter(score => score.playerLeft === key || score.playerRight === key));
+  }
 
-  updateStats(key): void {
-    //let games = this.scores.filter( s => s.playerLeft === this.playerStat.key);
+  getGameCount(){
+    this.gameCount = this.scoresForPlayer.length;
+  }
 
-    //this.firebaseService.getScores().forEach(s => s.playerLeft === this.playerStat.key);
-
-
-    // Http.get('https://xecdapi.xe.com/v1/account_info/', {
-    //     headers: {"Authorization": "Basic account_id:api_key"})
-    //     .success(function(response){
-    //     console.log(response)
-    //   })
-
-    // let games = curl 'https://docs-examples.firebaseio.com/rest/saving-data/fireblog/posts.json?print=pretty';
-    this.scoresForPlayer = this.firebaseService.getScoreForPlayer(this.playerStat.key);
-    console.log("Player choosen"+this.playerStat.key);
+  updateStats(): void {
+    this.scoresForPlayer = this.getScoreForPlayer(this.playerStat.key);
+    this.getGameCount();
+    console.log("Player choosen"+ this.playerStat.key);
    }
   /**
     * Implement functionality as soon as the template view has loaded
