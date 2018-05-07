@@ -1,3 +1,4 @@
+import { Http } from '@angular/http';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { FirebaseServiceProvider } from './../../providers/firebase-service/firebase-service';
@@ -157,7 +158,19 @@ export class StatsPage {
   }
 
   updateStats(key): void {
-    //let games = this.scores.filter(s => s[0].playerLeft===this.playerStat.key);
+    //let games = this.scores.filter( s => s.playerLeft === this.playerStat.key);
+
+    //this.firebaseService.getScores().forEach(s => s.playerLeft === this.playerStat.key);
+
+
+    Http.get('https://xecdapi.xe.com/v1/account_info/', {
+        headers: {"Authorization": "Basic account_id:api_key"})
+        .success(function(response){
+        console.log(response)
+      })
+
+    let games = curl 'https://docs-examples.firebaseio.com/rest/saving-data/fireblog/posts.json?print=pretty';
+
     console.log("Player choosen");
   }
 
