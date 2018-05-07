@@ -1,4 +1,3 @@
-import { Http } from '@angular/http';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { FirebaseServiceProvider } from './../../providers/firebase-service/firebase-service';
@@ -13,8 +12,8 @@ export class StatsPage {
   scores: Observable<any[]>;
   scoresForPlayer: Observable<any[]>;
   winCountList: Observable<any[]>;
-  gameCount: Int;
-  winCount: Int;
+  gameCount: number;
+  winCount: number;
   playerStat: any;
   canvasSize = 100;
  
@@ -69,18 +68,33 @@ export class StatsPage {
   }
   
   getPercentageWins(){
-    console.log(this.winCount);
-        console.log(this.gameCount);
-    return this.winCount/(this.gameCount/100);
+    console.log("wins"+this.winCount);
+    console.log("games"+this.gameCount);
+    console.log("%"+this.winCount/(this.gameCount/100));
+    //fraction of wins (for pie) here in percent
+    if (this.gameCount!==0){
+      return this.winCount/(this.gameCount/100);
+    } else {
+      return 0; //if no games, percentage is not calculable
+    }
   }
 
+  getOpponentName(key: String): String{
+    let player = this.players.map(player => player.find(player => player.key === key));
+    // player.name ????
+    return "Tubbel";
+  }
+
+
   updateStats(): void {
-    this.scoresForPlayer = this.getScoreForPlayer(this.playerStat.key);
-    this.getGameCount();
-    this.getWinCount(this.playerStat.key);
-    console.log(this.getPercentageWins());
-    this.progressPie(this._CANVAS, this.getPercentageWins());
-    console.log("Player choosen"+ this.playerStat.key);
+    let key = this.playerStat.key;
+
+      this.scoresForPlayer = this.getScoreForPlayer(key);
+      this.getGameCount();
+      this.getWinCount(key);
+
+      this.clearCanvas();
+      this.progressPie(this._CANVAS, this.getPercentageWins());
    }
   /**
     * Implement functionality as soon as the template view has loaded
@@ -93,12 +107,12 @@ export class StatsPage {
     this._CANVAS = this.canvasEl.nativeElement;
     this._CANVAS.width = this.canvasSize;
     this._CANVAS.height = this.canvasSize;
-
     this.initialiseCanvas();
-    console.log(this.getPercentageWins());
-    this.progressPie(this._CANVAS, this.getPercentageWins()); //TODO: second argument is percent of Wins
   }
 
+
+
+  //******Progress Pie*******/
   /**
     * Detect if HTML5 Canvas is supported and, if so, configure the
     * canvas element accordingly
@@ -144,7 +158,7 @@ export class StatsPage {
     let centery = 0;
     const initialWidth = canvas.width;
     const fullRad = 2.0 * Math.PI;
-    const adjust = fraction => (fraction - 0.25) * fullRad;
+    const adjust = fraction => ((fraction/100)-0.25) * fullRad; //-0.25 to start at top
 
     const ctx = canvas.getContext('2d');
 
@@ -158,27 +172,27 @@ export class StatsPage {
       ctx.beginPath();
       ctx.moveTo(centerx, centery);
       ctx.arc(centerx, centery, radius, adjust(start), adjust(end), false);
-      const grad = ctx.createRadialGradient(centerx, centery, 0, centerx, centery, radius * 2);
-      grad.addColorStop(0, "white");
-      grad.addColorStop(1, color);
-      ctx.fillStyle = grad;
+      //const grad = ctx.createRadialGradient(centerx, centery, 0, centerx, centery, radius * 2);
+      //grad.addColorStop(0, "white");
+      //grad.addColorStop(1, color);
+      ctx.fillStyle = color;
       ctx.fill();
     }
 
     function paint() {
       redim();
 
-      // background circles
-      const divider = Number(0.5);
-      pieSlice(0, divider, radius, "red");
-      pieSlice(divider, 1, radius, "blue");
-
+      // red background 
+      pieSlice(0, 100, radius*0.99, "red");
+     
+      //green wins
       ctx.beginPath();
       ctx.moveTo(centerx, centery);
-      ctx.arc(centerx, centery, radius * 0.9, adjust(0), adjust(progressFraction), false);
-      ctx.fillStyle = "#74A0C2";
+      ctx.arc(centerx, centery, radius, adjust(0), adjust(progressFraction), false);
+      ctx.fillStyle = "#6fffc8"; // matchitgreen
       ctx.fill();
     }
+
     paint();
     canvas.onresize = paint;
     canvas.onclick = _ => { // onclick just shows the pie in double the initial size, second click restores
