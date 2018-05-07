@@ -77,4 +77,9 @@ export class FirebaseServiceProvider {
     this.playersRef.remove(key);
   }
 
+  getScoreForPlayer(key){
+    return this.scores.map(items => 
+      items.filter(score => score.playerLeft === key));
+  }
+
 }

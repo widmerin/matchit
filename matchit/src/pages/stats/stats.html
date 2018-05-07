@@ -53,5 +53,12 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
+ <ion-list>
+  <h2>Fitlerd Scores</h2>
+  <ion-item *ngFor="let score of scoresForPlayer | async">
+    <ion-label>
+     {{score.playerLeft}} : {{score.playerRight}}  {{score.scoreLeft}} - {{score.scoreRight}}
+   </ion-label>
+ </ion-item>
+</ion-list>
 </ion-content>

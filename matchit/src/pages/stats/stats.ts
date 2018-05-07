@@ -11,6 +11,7 @@ import { Observable } from 'rxjs/Observable';
 export class StatsPage {
   players: Observable<any[]>;
   scores: Observable<any[]>;
+  scoresForPlayer: Observable<any[]>;
   playerStat: any;
   canvasSize = 100;
 
@@ -39,7 +40,6 @@ export class StatsPage {
   constructor(public navCtrl: NavController, public firebaseService: FirebaseServiceProvider) {
     this.players = this.firebaseService.getPlayers();
     this.scores = this.firebaseService.getScores();
-
     this.playerStat = {
       key: null,
       img: './assets/imgs/avatar.png',
@@ -47,6 +47,23 @@ export class StatsPage {
     };
   }
 
+
+  updateStats(key): void {
+    //let games = this.scores.filter( s => s.playerLeft === this.playerStat.key);
+
+    //this.firebaseService.getScores().forEach(s => s.playerLeft === this.playerStat.key);
+
+
+    // Http.get('https://xecdapi.xe.com/v1/account_info/', {
+    //     headers: {"Authorization": "Basic account_id:api_key"})
+    //     .success(function(response){
+    //     console.log(response)
+    //   })
+
+    // let games = curl 'https://docs-examples.firebaseio.com/rest/saving-data/fireblog/posts.json?print=pretty';
+    this.scoresForPlayer = this.firebaseService.getScoreForPlayer(this.playerStat.key);
+    console.log("Player choosen"+this.playerStat.key);
+   }
   /**
     * Implement functionality as soon as the template view has loaded
     *
@@ -157,21 +174,6 @@ export class StatsPage {
 
   }
 
-  updateStats(key): void {
-    //let games = this.scores.filter( s => s.playerLeft === this.playerStat.key);
 
-    //this.firebaseService.getScores().forEach(s => s.playerLeft === this.playerStat.key);
-
-
-    Http.get('https://xecdapi.xe.com/v1/account_info/', {
-        headers: {"Authorization": "Basic account_id:api_key"})
-        .success(function(response){
-        console.log(response)
-      })
-
-    let games = curl 'https://docs-examples.firebaseio.com/rest/saving-data/fireblog/posts.json?print=pretty';
-
-    console.log("Player choosen");
-  }
 
 }
