@@ -12,7 +12,9 @@ export class StatsPage {
   players: Observable<any[]>;
   scores: Observable<any[]>;
   scoresForPlayer: Observable<any[]>;
+  winCountList: Observable<any[]>;
   gameCount: Int;
+  winCount: Int;
   playerStat: any;
   canvasSize = 100;
  
@@ -47,6 +49,7 @@ export class StatsPage {
       name: ''
     };
     this.gameCount = 0;
+    this.winCount = 0;
   }
 
   getScoreForPlayer(key){
@@ -55,12 +58,28 @@ export class StatsPage {
   }
 
   getGameCount(){
-    this.gameCount = this.scoresForPlayer.length;
+    this.scoresForPlayer.subscribe(result => this.gameCount = result.length);
+  }
+
+  getWinCount(key){
+    this.winCountList = this.scoresForPlayer.map(items => 
+      items.filter(score => score.playerLeft === key && score.scoreLeft === 15 || score.playerRight === key && score.scoreRight === 15));
+    
+    this.winCountList.subscribe(result => this.winCount = result.length);
+  }
+  
+  getPercentageWins(){
+    console.log(this.winCount);
+        console.log(this.gameCount);
+    return this.winCount/(this.gameCount/100);
   }
 
   updateStats(): void {
     this.scoresForPlayer = this.getScoreForPlayer(this.playerStat.key);
     this.getGameCount();
+    this.getWinCount(this.playerStat.key);
+    console.log(this.getPercentageWins());
+    this.progressPie(this._CANVAS, this.getPercentageWins());
     console.log("Player choosen"+ this.playerStat.key);
    }
   /**
@@ -76,7 +95,8 @@ export class StatsPage {
     this._CANVAS.height = this.canvasSize;
 
     this.initialiseCanvas();
-    this.progressPie(this._CANVAS, 0.65); //TODO: second argument is percent of Wins
+    console.log(this.getPercentageWins());
+    this.progressPie(this._CANVAS, this.getPercentageWins()); //TODO: second argument is percent of Wins
   }
 
   /**
