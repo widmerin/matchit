@@ -14,6 +14,7 @@ export class StatsPage {
   winCountList: Observable<any[]>;
   gameCount: number;
   winCount: number;
+  winPercentage: number;
   playerStat: any;
   canvasSize = 100;
  
@@ -49,9 +50,10 @@ export class StatsPage {
     };
     this.gameCount = 0;
     this.winCount = 0;
+    this.winPercentage = 0;
   }
 
-  getScoreForPlayer(key){
+  getScoresForPlayer(key){
     return this.scores.map(items => 
       items.filter(score => score.playerLeft === key || score.playerRight === key));
   }
@@ -67,34 +69,37 @@ export class StatsPage {
     this.winCountList.subscribe(result => this.winCount = result.length);
   }
   
-  getPercentageWins(){
-    console.log("wins"+this.winCount);
-    console.log("games"+this.gameCount);
-    console.log("%"+this.winCount/(this.gameCount/100));
+  getWinPercentage(){
+    //console.log("wins  "+this.winCount);
+    //console.log("games  "+this.gameCount);
+    //console.log("%  "+(this.winCount/(this.gameCount/100)).toFixed(1));
+    
     //fraction of wins (for pie) here in percent
     if (this.gameCount!==0){
-      return this.winCount/(this.gameCount/100);
+      this.winPercentage = Number((this.winCount/(this.gameCount/100)).toFixed(1));
     } else {
-      return 0; //if no games, percentage is not calculable
+      this.winPercentage = 0; //if no games, percentage is not calculable
     }
   }
 
   getOpponentName(key: String): String{
-    let player = this.players.map(player => player.find(player => player.key === key));
-    // player.name ????
-    return "Tubbel";
+    //let player = this.players.map(player => player.find(player => player.key === key));
+    let opPlayer = "...";
+   // player.forEach(p => opPlayer = p.name);
+    return opPlayer;
   }
 
 
   updateStats(): void {
-    let key = this.playerStat.key;
+      let key = this.playerStat.key;
 
-      this.scoresForPlayer = this.getScoreForPlayer(key);
+      this.scoresForPlayer = this.getScoresForPlayer(key);
       this.getGameCount();
       this.getWinCount(key);
+      this.getWinPercentage();
 
       this.clearCanvas();
-      this.progressPie(this._CANVAS, this.getPercentageWins());
+      this.progressPie(this._CANVAS, this.winPercentage);
    }
   /**
     * Implement functionality as soon as the template view has loaded
@@ -183,7 +188,7 @@ export class StatsPage {
       redim();
 
       // red background 
-      pieSlice(0, 100, radius*0.99, "red");
+      pieSlice(0, 100, radius*0.99, "#5a41ff"); //matchitblue
      
       //green wins
       ctx.beginPath();
