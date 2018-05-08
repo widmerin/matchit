@@ -31,18 +31,15 @@
               <div class="ion-canvas">
                 <canvas #canvas></canvas>
               </div>
-              <script>
-                progressPie();
-              </script>
           </ion-col>
         </ion-row>
 
-    <ion-row>
+    <ion-row [hidden]="this.playerStat.key===null">
       <ion-col col-12>
         <h4>Scores for {{playerStat.name}}</h4>
         <p>Played in {{ this.gameCount }} games. Wins {{ this.winCount }}-times. That's {{ this.winPercentage }}%</p>
           <ion-list>
-            <p>Last matches:</p>
+            <h5>Last matches:</h5>
               <ion-item *ngFor="let score of scoresForPlayer | async">
                 <ion-label>
                   {{score.Date | date:'dd.MM.yyyy'}} => {{score.scoreLeft}} : {{score.scoreRight}} 
