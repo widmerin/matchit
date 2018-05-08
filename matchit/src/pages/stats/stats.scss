@@ -10,10 +10,11 @@ page-stats {
         }
     
        ion-avatar .player-img{
+           
             border-radius: 50%;
             overflow: hidden;
-            width: 50px;
-            height: 50px;
+            width: 75px;
+            height: 75px;
             display: inline-block;
         }
     
@@ -21,9 +22,30 @@ page-stats {
             padding-bottom: 16px;
         }
     
-        .select-icon {
+        .select-icon,
+        .select-text {
             visibility: hidden;
         }
+
+        .select-placeholder{
+            visibility: visible;
+        }
+
+        .playerstat{
+            padding-top: 15px;
+        }
     
+        .playerstatData{
+            padding-top: 0px;
+            margin-top: 0px;
+        }
+
+        canvas{
+            padding-bottom: 100px;
+            position:absolute;
+            top:-7px;
+            left:36%;
+            z-index:-10;
+        }
     
 }
