@@ -161,7 +161,6 @@ export class StatsPage {
     let radius = 0;
     let centerx = 0;
     let centery = 0;
-    const initialWidth = canvas.width;
     const fullRad = 2.0 * Math.PI;
     const adjust = fraction => ((fraction/100)-0.25) * fullRad; //-0.25 to start at top
 
@@ -177,9 +176,6 @@ export class StatsPage {
       ctx.beginPath();
       ctx.moveTo(centerx, centery);
       ctx.arc(centerx, centery, radius, adjust(start), adjust(end), false);
-      //const grad = ctx.createRadialGradient(centerx, centery, 0, centerx, centery, radius * 2);
-      //grad.addColorStop(0, "white");
-      //grad.addColorStop(1, color);
       ctx.fillStyle = color;
       ctx.fill();
     }
@@ -200,18 +196,5 @@ export class StatsPage {
 
     paint();
     canvas.onresize = paint;
-    canvas.onclick = _ => { // onclick just shows the pie in double the initial size, second click restores
-      if (canvas.width > initialWidth) {
-        canvas.width = initialWidth;
-      } else {
-        canvas.width = initialWidth * 2;
-      }
-      canvas.height = canvas.width;
-      paint()
-    }
-
   }
-
-
-
 }
