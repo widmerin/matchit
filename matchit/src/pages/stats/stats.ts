@@ -53,8 +53,8 @@ export class StatsPage {
     this.winPercentage = 0;
   }
 
-  getScoresForPlayer(key){
-    return this.scores.map(items => 
+  async getScoresForPlayer(key){
+    this.scoresForPlayer = this.scores.map(items => 
       items.filter(score => score.playerLeft === key || score.playerRight === key));
   }
 
@@ -70,9 +70,9 @@ export class StatsPage {
   }
   
   getWinPercentage(){
-    //console.log("wins  "+this.winCount);
-    //console.log("games  "+this.gameCount);
-    //console.log("%  "+(this.winCount/(this.gameCount/100)).toFixed(1));
+    console.log("wins  "+this.winCount);
+    console.log("games  "+this.gameCount);
+    console.log("%  "+(this.winCount/(this.gameCount/100)).toFixed(1));
     
     //fraction of wins (for pie) here in percent
     if (this.gameCount!==0){
@@ -84,22 +84,22 @@ export class StatsPage {
 
   getOpponentName(key: String): String{
     //let player = this.players.map(player => player.find(player => player.key === key));
-    let opPlayer = "...";
+    let opPlayer = "Gegner";
    // player.forEach(p => opPlayer = p.name);
     return opPlayer;
   }
 
 
+
+
   updateStats(): void {
       let key = this.playerStat.key;
 
-      this.scoresForPlayer = this.getScoresForPlayer(key);
-      this.getGameCount();
-      this.getWinCount(key);
-      this.getWinPercentage();
-
-      this.clearCanvas();
-      this.progressPie(this._CANVAS, this.winPercentage);
+      this.getScoresForPlayer(key).then(_=>this.getGameCount())
+                                  .then(_=>this.getWinCount(key))
+                                  .then(_=>this.getWinPercentage())
+                                  .then(_=>this.clearCanvas())
+                                  .then(_=>this.progressPie(this._CANVAS, this.winPercentage));
    }
   /**
     * Implement functionality as soon as the template view has loaded
@@ -115,6 +115,9 @@ export class StatsPage {
     this.initialiseCanvas();
   }
 
+  ionViewDidEnter(){
+    this.updateStats();
+  }
 
 
   //******Progress Pie*******/

@@ -18,6 +18,12 @@ page-stats {
             display: inline-block;
         }
     
+        .playerstat ion-icon{
+            padding-top: 30px;
+            font-size: 2em;
+        }
+
+     
         .scroll-content ion-row {
             padding-bottom: 16px;
         }
@@ -48,5 +54,8 @@ page-stats {
             margin-left: -50px;
             z-index:-10;
         }
-    
+        
+        .datetime{
+            color: rgb(131, 131, 131);
+        }
 }

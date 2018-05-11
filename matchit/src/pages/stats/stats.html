@@ -16,33 +16,44 @@
 
 <ion-content>
   <ion-grid>
-        <ion-row class="playerstat">
-          <ion-col col-12>
-              <ion-avatar item-start>
-                <img [src]="playerStat.img" class="player-img">
-              </ion-avatar>
-              <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="playerStat" placeholder="choose Player" (ngModelChange)="updateStats()">
-                <ion-option *ngFor="let player of players | async" [value]="player">{{player.name}}</ion-option>
-              </ion-select>
-              <div class="ion-canvas">
-                <canvas #canvas></canvas>
-              </div>
-          </ion-col>
-        </ion-row>
+    <ion-row class="playerstat">
+      <ion-col col-3>
+            <ion-icon name="sad" [style.color]="'#5a41ff'"></ion-icon>
+      </ion-col>
+      <ion-col col-6>
+        <ion-avatar item-start>
+          <img [src]="playerStat.img" class="player-img">
+        </ion-avatar>
+        <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="playerStat" placeholder="choose Player" (ngModelChange)="updateStats()">
+          <ion-option *ngFor="let player of players | async" [value]="player">{{player.name}}</ion-option>
+        </ion-select>
+        <div class="ion-canvas">
+          <canvas #canvas></canvas>
+        </div>
+      </ion-col>
+      <ion-col col-3>
+        <ion-icon name="trophy" [style.color]="'#6fffc8'"></ion-icon>
+      </ion-col>
+    </ion-row>
 
     <ion-row [hidden]="this.playerStat.key===null">
       <ion-col col-12 class="playerstatData">
         <h4>Scores for {{playerStat.name}}</h4>
         <p>Played in {{ this.gameCount }} games. Wins {{ this.winCount }}-times. That's {{ this.winPercentage }}%</p>
-          <ion-list>
-            <h5>Last matches:</h5>
-              <ion-item *ngFor="let score of scoresForPlayer | async">
-                <ion-label>
-                  {{score.Date | date:'dd.MM.yyyy'}} => {{score.scoreLeft}} : {{score.scoreRight}} 
-                      {{getOpponentName(score.playerLeft)}}
-                </ion-label>
-            </ion-item>
-          </ion-list>
+        <ion-list>
+          <h5>Last matches:</h5>
+          <ion-item *ngFor="let score of scoresForPlayer | async">
+            <ion-label>
+              <span class="datetime">{{score.Date | date:'dd.MM.yy'}}</span>
+              <ion-icon name="play" [style.color]="'#e9ff47'"></ion-icon>
+              {{score.scoreLeft}} : {{score.scoreRight}}
+              <ion-icon name="trophy" [style.color]="'#6fffc8'"></ion-icon>
+              <ion-icon name="sad" [style.color]="'#5a41ff'"></ion-icon>
+              vs. 
+              {{getOpponentName(score.playerLeft)}}
+            </ion-label>
+          </ion-item>
+        </ion-list>
       </ion-col>
     </ion-row>
   </ion-grid>
