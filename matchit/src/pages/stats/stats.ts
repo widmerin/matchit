@@ -19,7 +19,7 @@ export class StatsPage {
   canvasSize = 100;
   /**
       * Scores are stored like this:
-      * 
+      *
       * {
           "Date" : 1523883941918,
           "playerLeft" : "-LADVQHHbBxSaRT5uM2u",
@@ -53,8 +53,8 @@ export class StatsPage {
   }
 
   async getScoresForPlayer(key){
-    this.scoresForPlayer = this.scores.map(items => 
-      items.filter(score => score.playerLeft === key || score.playerRight === key));
+    this.scoresForPlayer = this.scores.map(items =>
+      items.filter(score => score.playerLeft.key === key || score.playerRight.key === key));
   }
 
   getGameCount(){
@@ -62,17 +62,17 @@ export class StatsPage {
   }
 
   getWinCount(key){
-    this.winCountList = this.scoresForPlayer.map(items => 
-      items.filter(score => score.playerLeft === key && score.scoreLeft === 15 || score.playerRight === key && score.scoreRight === 15));
-    
+    this.winCountList = this.scoresForPlayer.map(items =>
+      items.filter(score => score.playerLeft.key === key && score.scoreLeft === 15 || score.playerRight.key === key && score.scoreRight === 15));
+
     this.winCountList.subscribe(result => this.winCount = result.length);
   }
-  
+
   getWinPercentage(){
     // console.log("wins  "+this.winCount);
     // console.log("games  "+this.gameCount);
     // console.log("%  "+(this.winCount/(this.gameCount/100)).toFixed(1));
-    
+
     //fraction of wins (for pie) here in percent
     if (this.gameCount!==0){
       return Number((this.winCount/(this.gameCount/100)).toFixed(1));
@@ -81,11 +81,14 @@ export class StatsPage {
     }
   }
 
-  getOpponentName(key: String): String{
-    //let player = this.players.map(player => player.find(player => player.key === key));
-    let opPlayer = "Gegner";
-   // player.forEach(p => opPlayer = p.name);
-    return opPlayer;
+  getOpponentName(score): String{
+    let opPlayer;
+    if(score.playerLeft.key === this.playerStat.key) {
+      opPlayer = score.playerRight;
+    } else {
+      opPlayer = score.playerLeft;
+    }
+    return opPlayer.name;
   }
 
 
@@ -188,9 +191,9 @@ export class StatsPage {
     function paint() {
       redim();
 
-      // red background 
+      // red background
       pieSlice(0, 100, radius*0.99, "#5a41ff"); //matchitblue
-     
+
       //green wins
       ctx.beginPath();
       ctx.moveTo(centerx, centery);

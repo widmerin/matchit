@@ -49,15 +49,15 @@
               <ion-icon name="play" [style.color]="'#e9ff47'"></ion-icon>
               <div class="result">{{score.scoreLeft}}</div>:
               <div class="result">{{score.scoreRight}}</div>
-              <span *ngIf="this.playerStat.key === score.playerLeft && score.scoreLeft === 15  ||
-                           this.playerStat.key === score.playerRight && score.scoreRight === 15 ||
-                           this.playerStat.key === score.playerLeft && score.scoreLeft === 9 && score.scoreRight === 0 ||
-                           this.playerStat.key === score.playerRight && score.scoreRight === 9 && score.scoreLeft === 0 
+              <span *ngIf="this.playerStat.key === score.playerLeft.key && score.scoreLeft === 15  ||
+                           this.playerStat.key === score.playerRight.key  && score.scoreRight === 15 ||
+                           this.playerStat.key === score.playerLeft.key  && score.scoreLeft === 9 && score.scoreRight === 0 ||
+                           this.playerStat.key === score.playerRight.key  && score.scoreRight === 9 && score.scoreLeft === 0
                            ; else otherContent">
                 <ion-icon name="trophy" [style.color]="'#6fffc8'"></ion-icon>
               </span>
               <ng-template #otherContent><ion-icon name="sad" [style.color]="'#5a41ff'"></ion-icon></ng-template>
-              vs. 
+              vs.
               {{getOpponentName(score)}}
             </ion-label>
           </ion-item>
