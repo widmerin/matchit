@@ -3,6 +3,13 @@ page-stats {
         ion-col{
             text-align: center;
         }
+
+        ion-row,
+        ion-row.reverse.row,
+        ion-row.playerstat.row{
+            margin: 0px;
+            padding: 0px;
+        }
     
         ion-select {
             max-width: 100%;
@@ -23,7 +30,10 @@ page-stats {
             font-size: 2em;
         }
 
-     
+        .scroll-content {
+            padding-top: 16px;
+        }
+
         .scroll-content ion-row {
             padding-bottom: 16px;
         }
@@ -68,4 +78,11 @@ page-stats {
         .list> * {
             margin: 0px 0.3em;
         }
+
+        .opName {
+            display: inline-block;
+            min-width: 100px;
+        }
+
+        .reverse { flex-direction: row-reverse; }
 }
