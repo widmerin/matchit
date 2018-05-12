@@ -58,4 +58,14 @@ page-stats {
         .datetime{
             color: rgb(131, 131, 131);
         }
+
+        .result{
+            display: inline-block;
+            text-align: right;
+            min-width: 20px;
+        }
+
+        .list> * {
+            margin: 0px 0.3em;
+        }
 }

@@ -43,14 +43,21 @@
         <ion-list>
           <h5>Last matches:</h5>
           <ion-item *ngFor="let score of scoresForPlayer | async">
-            <ion-label>
+            <ion-label class="list">
               <span class="datetime">{{score.Date | date:'dd.MM.yy'}}</span>
               <ion-icon name="play" [style.color]="'#e9ff47'"></ion-icon>
-              {{score.scoreLeft}} : {{score.scoreRight}}
-              <ion-icon name="trophy" [style.color]="'#6fffc8'"></ion-icon>
-              <ion-icon name="sad" [style.color]="'#5a41ff'"></ion-icon>
+              <div class="result">{{score.scoreLeft}}</div>:
+              <div class="result">{{score.scoreRight}}</div>
+              <span *ngIf="this.playerStat.key === score.playerLeft && score.scoreLeft === 15  ||
+                           this.playerStat.key === score.playerRight && score.scoreRight === 15 ||
+                           this.playerStat.key === score.playerLeft && score.scoreLeft === 9 && score.scoreRight === 0 ||
+                           this.playerStat.key === score.playerRight && score.scoreRight === 9 && score.scoreLeft === 0 
+                           ; else otherContent">
+                <ion-icon name="trophy" [style.color]="'#6fffc8'"></ion-icon>
+              </span>
+              <ng-template #otherContent><ion-icon name="sad" [style.color]="'#5a41ff'"></ion-icon></ng-template>
               vs. 
-              {{getOpponentName(score.playerLeft)}}
+              {{getOpponentName(score)}}
             </ion-label>
           </ion-item>
         </ion-list>
