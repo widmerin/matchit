@@ -17,7 +17,6 @@ export class StatsPage {
   winPercentage: number;
   playerStat: any;
   canvasSize = 100;
- 
   /**
       * Scores are stored like this:
       * 
@@ -70,15 +69,15 @@ export class StatsPage {
   }
   
   getWinPercentage(){
-    console.log("wins  "+this.winCount);
-    console.log("games  "+this.gameCount);
-    console.log("%  "+(this.winCount/(this.gameCount/100)).toFixed(1));
+    // console.log("wins  "+this.winCount);
+    // console.log("games  "+this.gameCount);
+    // console.log("%  "+(this.winCount/(this.gameCount/100)).toFixed(1));
     
     //fraction of wins (for pie) here in percent
     if (this.gameCount!==0){
-      this.winPercentage = Number((this.winCount/(this.gameCount/100)).toFixed(1));
+      return Number((this.winCount/(this.gameCount/100)).toFixed(1));
     } else {
-      this.winPercentage = 0; //if no games, percentage is not calculable
+      return 0; //if no games, percentage is not calculable
     }
   }
 
@@ -91,15 +90,18 @@ export class StatsPage {
 
 
 
-
   updateStats(): void {
       let key = this.playerStat.key;
 
       this.getScoresForPlayer(key).then(_=>this.getGameCount())
-                                  .then(_=>this.getWinCount(key))
-                                  .then(_=>this.getWinPercentage())
-                                  .then(_=>this.clearCanvas())
-                                  .then(_=>this.progressPie(this._CANVAS, this.winPercentage));
+                                  .then(_=>this.getWinCount(key));
+   }
+
+   getCanvas() {
+    this._CANVAS = this.canvasEl.nativeElement;
+    this._CANVAS.width = this.canvasSize;
+    this._CANVAS.height = this.canvasSize;
+    this.progressPie(this._CANVAS, this.getWinPercentage());
    }
   /**
     * Implement functionality as soon as the template view has loaded

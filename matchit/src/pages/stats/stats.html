@@ -28,6 +28,7 @@
           <ion-option *ngFor="let player of players | async" [value]="player">{{player.name}}</ion-option>
         </ion-select>
         <div class="ion-canvas">
+
           <canvas #canvas></canvas>
         </div>
       </ion-col>
@@ -39,7 +40,7 @@
     <ion-row [hidden]="this.playerStat.key===null">
       <ion-col col-12 class="playerstatData">
         <h4>Scores for {{playerStat.name}}</h4>
-        <p>Played in {{ this.gameCount }} games. Wins {{ this.winCount }}-times. That's {{ this.winPercentage }}%</p>
+        <p>Played in {{ this.gameCount }} games. Wins {{ this.winCount }}-times. That's {{ this.getWinPercentage() }}%</p>
         <ion-list>
           <h5>Last matches:</h5>
           <ion-item *ngFor="let score of scoresForPlayer | async">
@@ -64,4 +65,5 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+     {{ this.getCanvas() }}
 </ion-content>
