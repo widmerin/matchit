@@ -94,10 +94,14 @@ export class StatsPage {
       let key = this.playerStat.key;
 
       this.getScoresForPlayer(key).then(_=>this.getGameCount())
-                                  .then(_=>this.getWinCount(key))
-                                  .then(_=>this.winPercentage = this.getWinPercentage())
-                                  .then(_=>this.clearCanvas())
-                                  .then(_=>this.progressPie(this._CANVAS, this.winPercentage));
+                                  .then(_=>this.getWinCount(key));
+   }
+
+   getCanvas() {
+    this._CANVAS = this.canvasEl.nativeElement;
+    this._CANVAS.width = this.canvasSize;
+    this._CANVAS.height = this.canvasSize;
+    this.progressPie(this._CANVAS, this.getWinPercentage());
    }
   /**
     * Implement functionality as soon as the template view has loaded

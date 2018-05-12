@@ -28,6 +28,7 @@
           <ion-option *ngFor="let player of players | async" [value]="player">{{player.name}}</ion-option>
         </ion-select>
         <div class="ion-canvas">
+
           <canvas #canvas></canvas>
         </div>
       </ion-col>
@@ -57,4 +58,5 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+     {{ this.getCanvas() }}
 </ion-content>
