@@ -3,6 +3,9 @@ import { NavController } from 'ionic-angular';
 import { FirebaseServiceProvider } from './../../providers/firebase-service/firebase-service';
 import { Observable } from 'rxjs/Observable';
 
+
+
+
 @Component({
   selector: 'page-stats',
   templateUrl: 'stats.html'
@@ -63,7 +66,12 @@ export class StatsPage {
 
   getWinCount(key){
     this.winCountList = this.scoresForPlayer.map(items =>
-      items.filter(score => score.playerLeft.key === key && score.scoreLeft === 15 || score.playerRight.key === key && score.scoreRight === 15));
+      items.filter(score => 
+        score.playerLeft.key === key && score.scoreLeft === 15 || 
+        score.playerRight.key === key && score.scoreRight === 15 ||
+        score.playerLeft.key === key && score.scoreLeft === 9 && score.scoreRight === 0 || 
+        score.playerRight.key === key && score.scoreRight === 9 && score.scoreLeft === 0
+      ));
 
     this.winCountList.subscribe(result => this.winCount = result.length);
   }

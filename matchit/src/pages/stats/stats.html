@@ -16,9 +16,13 @@
 
 <ion-content>
   <ion-grid>
+     <ion-col [hidden]="this.playerStat.key===null" col-12 class="playerstatData">
+        <h4>Scores for {{playerStat.name}}</h4>
+      </ion-col>
+   
     <ion-row class="playerstat">
       <ion-col col-3>
-            <ion-icon name="sad" [style.color]="'#5a41ff'"></ion-icon>
+        <ion-icon name="sad" [style.color]="'#5a41ff'"></ion-icon>
       </ion-col>
       <ion-col col-6>
         <ion-avatar item-start>
@@ -28,7 +32,6 @@
           <ion-option *ngFor="let player of players | async" [value]="player">{{player.name}}</ion-option>
         </ion-select>
         <div class="ion-canvas">
-
           <canvas #canvas></canvas>
         </div>
       </ion-col>
@@ -39,16 +42,10 @@
 
     <ion-row [hidden]="this.playerStat.key===null">
       <ion-col col-12 class="playerstatData">
-        <h4>Scores for {{playerStat.name}}</h4>
         <p>Played in {{ this.gameCount }} games. Wins {{ this.winCount }}-times. That's {{ this.getWinPercentage() }}%</p>
-        <ion-list>
           <h5>Last matches:</h5>
-          <ion-item *ngFor="let score of scoresForPlayer | async">
+          <ion-row *ngFor="let score of scoresForPlayer | async" class="reverse">
             <ion-label class="list">
-              <span class="datetime">{{score.Date | date:'dd.MM.yy'}}</span>
-              <ion-icon name="play" [style.color]="'#e9ff47'"></ion-icon>
-              <div class="result">{{score.scoreLeft}}</div>:
-              <div class="result">{{score.scoreRight}}</div>
               <span *ngIf="this.playerStat.key === score.playerLeft.key && score.scoreLeft === 15  ||
                            this.playerStat.key === score.playerRight.key  && score.scoreRight === 15 ||
                            this.playerStat.key === score.playerLeft.key  && score.scoreLeft === 9 && score.scoreRight === 0 ||
@@ -56,14 +53,20 @@
                            ; else otherContent">
                 <ion-icon name="trophy" [style.color]="'#6fffc8'"></ion-icon>
               </span>
-              <ng-template #otherContent><ion-icon name="sad" [style.color]="'#5a41ff'"></ion-icon></ng-template>
-              vs.
-              {{getOpponentName(score)}}
+              <ng-template #otherContent>
+                <ion-icon name="sad" [style.color]="'#5a41ff'"></ion-icon>
+              </ng-template>
+              <div class="opName">
+                vs. {{getOpponentName(score)}}
+              </div>
+              <div class="result">{{score.scoreLeft}}</div>:
+              <div class="result">{{score.scoreRight}}</div>
+              <ion-icon name="play" [style.color]="'#e9ff47'"></ion-icon>
+              <span class="datetime">{{score.Date | date:'dd.MM.yy'}}</span>
             </ion-label>
-          </ion-item>
-        </ion-list>
+          </ion-row>
       </ion-col>
     </ion-row>
   </ion-grid>
-     {{ this.getCanvas() }}
+  {{ this.getCanvas() }}
 </ion-content>
