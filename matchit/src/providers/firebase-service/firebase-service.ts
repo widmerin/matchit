@@ -45,7 +45,9 @@ export class FirebaseServiceProvider {
 
 
   getScores() {
-    return this.scores;
+     return this.scores.map(score => {
+         return score.reverse();
+     });
   }
 
   addPlayer(player) {
