@@ -83,7 +83,7 @@ export class StatsPage {
 
     //fraction of wins (for pie) here in percent
     if (this.gameCount!==0){
-      return Number((this.winCount/(this.gameCount/100)).toFixed(1));
+      return Number((this.winCount/(this.gameCount/100)).toFixed(0));
     } else {
       return 0; //if no games, percentage is not calculable
     }
