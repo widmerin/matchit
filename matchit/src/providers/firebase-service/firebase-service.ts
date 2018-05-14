@@ -40,7 +40,11 @@ export class FirebaseServiceProvider {
   }
 
   getPlayers() {
-    return this.players;
+    return this.players.map(player => {
+       return player.sort(function(a,b){
+          return a.name.localeCompare(b.name);
+      })
+   });
   }
 
 
