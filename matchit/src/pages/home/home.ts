@@ -59,8 +59,8 @@ export class HomePage {
       (this.score.scoreRight !== null && this.score.scoreLeft !== null
         && this.score.playerLeft.key !== null && this.score.playerRight.key !== null) &&
       //valid scores
-      ((this.score.scoreRight < 15 && this.score.scoreLeft === 15)
-        || (this.score.scoreRight === 15 && this.score.scoreLeft < 15)
+      ((this.score.scoreRight < 15 && this.score.scoreRight > 0 && this.score.scoreLeft === 15)
+        || (this.score.scoreRight === 15 && this.score.scoreLeft < 15 && this.score.scoreLeft > 0)
         || (this.score.scoreRight === 9 && this.score.scoreLeft === 0)
         || (this.score.scoreRight === 0 && this.score.scoreLeft === 9)
         )
