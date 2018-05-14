@@ -29,8 +29,9 @@
         <ion-avatar item-start>
           <img [src]="score.playerLeft.img" class="player-img">
         </ion-avatar>
-        <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="score.playerLeft" placeholder="Player 1">
-          <ion-option *ngFor="let player of players | async" [value]="player">{{player.name}}</ion-option>
+        <p>{{score.playerLeft.name}}</p>
+        <ion-select interface="action-sheet" cancelText="Dismiss" class="select-player" [(ngModel)]="score.playerLeft" (ngModelChange)="updateStatsLeft()">
+          <ion-option *ngFor="let player of playersLeft | async" [value]="player">{{player.name}}</ion-option>
         </ion-select>
       </ion-col>
       <ion-col col-2 class="vsPlayer">vs.</ion-col>
@@ -38,8 +39,9 @@
         <ion-avatar item-start>
           <img [src]="score.playerRight.img" class="player-img">
         </ion-avatar>
-        <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="score.playerRight" placeholder="Player 2">
-          <ion-option *ngFor="let player of players | async" [value]="player">{{player.name}}</ion-option>
+         <p>{{score.playerRight.name}}</p>
+        <ion-select interface="action-sheet" cancelText="Dismiss" class="select-player" [(ngModel)]="score.playerRight" (ngModelChange)="updateStatsRight()">
+          <ion-option *ngFor="let player of playersRight | async" [value]="player">{{player.name}}</ion-option>
         </ion-select>
       </ion-col>
     </ion-row>

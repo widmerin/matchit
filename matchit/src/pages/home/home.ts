@@ -18,6 +18,8 @@ export class HomePage {
   playerLeft: any;
   playerRight: any;
   players: Observable<any[]>;
+  playersLeft: Observable<any[]>;
+  playersRight: Observable<any[]>;
   score: any;
 
   constructor(public navCtrl: NavController, public firebaseService: FirebaseServiceProvider) {
@@ -46,7 +48,8 @@ export class HomePage {
       scoreRight: null,
       playerRight: this.playerRight
     }
-
+    this.playersLeft = this.players;
+    this.playersRight = this.players;
   }
 
   getMatchInvalid() {
@@ -60,14 +63,35 @@ export class HomePage {
         || (this.score.scoreRight === 15 && this.score.scoreLeft < 15)
         || (this.score.scoreRight === 9 && this.score.scoreLeft === 0)
         || (this.score.scoreRight === 0 && this.score.scoreLeft === 9)
+        )
       )
-    )
   }
 
+
+  updateStatsLeft() {
+    let keyLeft = this.score.playerLeft.key;
+    this.playersRight = this.filterPlayer(keyLeft);
+    
+  }
+
+  updateStatsRight() {
+    let keyRight = this.score.playerRight.key;
+    this.playersLeft = this.filterPlayer(keyRight);      
+  }
+
+
+  filterPlayer(key){
+    if(key!=null) {
+      return this.players.map(items => items.filter(p => p.key != key))
+    } else {
+      return this.players;
+    }
+  }
+
+  
   saveScore(){
-    console.log(this.score);
     if(!this.getMatchInvalid()) {
-       this.firebaseService.addScore(this.score);
+     this.firebaseService.addScore(this.score);
 
       //reset score
       this.score.scoreLeft = null;
@@ -75,4 +99,6 @@ export class HomePage {
     }
 
   }
+
+
 }
