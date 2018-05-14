@@ -16,57 +16,69 @@
 
 <ion-content>
   <ion-grid>
-     <ion-col [hidden]="this.playerStat.key===null" col-12 class="playerstatData">
-        <h4>Scores for {{playerStat.name}}</h4>
+    <ion-row>
+      <ion-col col-12>
+           <h4 *ngIf="this.playerStat.key===null">Choose Player:</h4>
+           <h4 *ngIf="this.playerStat.key!=null">Scores for {{playerStat.name}}</h4> 
       </ion-col>
+    </ion-row>
+<!-- 
+  <ion-grid>
+   <ion-col  col-12 class="playerstatData">
    
-    <ion-row class="playerstat">
-      <ion-col col-3>
-        <ion-icon name="sad" [style.color]="'#5a41ff'"></ion-icon>
-      </ion-col>
-      <ion-col col-6>
-        <ion-avatar item-start>
-          <img [src]="playerStat.img" class="player-img">
-        </ion-avatar>
-        <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="playerStat" placeholder="choose Player" (ngModelChange)="updateStats()">
-          <ion-option *ngFor="let player of players | async" [value]="player">{{player.name}}</ion-option>
-        </ion-select>
-        <div class="ion-canvas">
-          <canvas #canvas></canvas>
-        </div>
-      </ion-col>
-      <ion-col col-3>
-        <ion-icon name="trophy" [style.color]="'#6fffc8'"></ion-icon>
-      </ion-col>
-    </ion-row>
+  </ion-col> -->
 
-    <ion-row [hidden]="this.playerStat.key===null">
-      <ion-col col-12 class="playerstatData">
-        <p>Played in {{ this.gameCount }} games. Wins {{ this.winCount }}-times. That's {{ this.getWinPercentage() }}%</p>
-          <h5>Last matches:</h5>
-          <ion-row *ngFor="let score of scoresForPlayer | async" class="reverse">
-            <ion-label class="list">
-              <span *ngIf="this.playerStat.key === score.playerLeft.key && score.scoreLeft === 15  ||
-                           this.playerStat.key === score.playerRight.key  && score.scoreRight === 15 ||
-                           this.playerStat.key === score.playerLeft.key  && score.scoreLeft === 9 && score.scoreRight === 0 ||
-                           this.playerStat.key === score.playerRight.key  && score.scoreRight === 9 && score.scoreLeft === 0
-                           ; else otherContent">
-                <ion-icon name="trophy" [style.color]="'#6fffc8'"></ion-icon>
-              </span>
-              <ng-template #otherContent>
-                <ion-icon name="sad" [style.color]="'#5a41ff'"></ion-icon>
-              </ng-template>
-              <div class="opName">
-                vs. {{getOpponentName(score)}}
-              </div>
-              <div class="result">{{score.scoreLeft}}</div>:
-              <div class="result">{{score.scoreRight}}</div>
-              <ion-icon name="play" [style.color]="'#e9ff47'"></ion-icon>
-              <span class="datetime">{{score.Date | date:'dd.MM.yy'}}</span>
-            </ion-label>
-          </ion-row>
+  <ion-row class="playerstat">
+    <ion-col col-3>
+      <ion-icon name="sad" [style.color]="'#5a41ff'"></ion-icon>
+    </ion-col>
+    <ion-col col-6>
+      <ion-avatar item-start>
+        <img [src]="playerStat.img" class="player-img">
+      </ion-avatar>
+      <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="playerStat" placeholder="choose Player" (ngModelChange)="updateStats()">
+        <ion-option *ngFor="let player of players | async" [value]="player">{{player.name}}</ion-option>
+      </ion-select>
+      <div class="ion-canvas">
+        <canvas #canvas></canvas>
+      </div>
+    </ion-col>
+    <ion-col col-3>
+      <ion-icon name="trophy" [style.color]="'#6fffc8'"></ion-icon>
+    </ion-col>
+  </ion-row>
+
+  <ion-row [hidden]="this.playerStat.key===null">
+    <ion-col col-12 class="playerstatData">
+      <p>Played in {{ this.gameCount }} games. Wins {{ this.winCount }}-times. That's {{ this.getWinPercentage() }}%</p>
+      <h5>Last matches:</h5>
+      <ion-row *ngFor="let score of scoresForPlayer | async">
+        <ion-col col-1>
+          <ion-row>
+            <span *ngIf="this.playerStat.key === score.playerLeft.key && score.scoreLeft === 15  ||
+            this.playerStat.key === score.playerRight.key  && score.scoreRight === 15 ||
+            this.playerStat.key === score.playerLeft.key  && score.scoreLeft === 9 && score.scoreRight === 0 ||
+            this.playerStat.key === score.playerRight.key  && score.scoreRight === 9 && score.scoreLeft === 0
+            ; else otherContent">
+            <ion-icon name="trophy" [style.color]="'#6fffc8'"></ion-icon>
+          </span>
+          <ng-template #otherContent>
+            <ion-icon name="sad" [style.color]="'#5a41ff'"></ion-icon>
+          </ng-template>
+        </ion-row>
       </ion-col>
+      <ion-col col-5><ion-row>vs. {{getOpponentName(score)}}</ion-row></ion-col>
+      <ion-col col-3>
+        <ion-row  class="score">
+          <span>{{score.scoreLeft}}</span>
+          <span>:</span>
+          <span>{{score.scoreRight}}</span>
+        </ion-row>
+        </ion-col>
+      <ion-col col-3><ion-row class="datetime">{{score.Date | date:'dd.MM.yy'}}</ion-row></ion-col>
     </ion-row>
-  </ion-grid>
-  {{ this.getCanvas() }}
+  </ion-col>
+</ion-row>
+</ion-grid>
+{{ this.getCanvas() }}
 </ion-content>

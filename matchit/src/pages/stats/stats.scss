@@ -1,88 +1,79 @@
 page-stats {
+
+    ion-col{
+        text-align: center;
+    }
+
+    ion-row,
+    ion-row.reverse.row,
+    ion-row.playerstat.row{
+        margin: 0px;
+        padding: 0px;
+    }
     
-        ion-col{
+    ion-select {
+        max-width: 100%;
+        font-size: 0.7em;
+    }
+    
+    ion-avatar .player-img{
+
+        border-radius: 50%;
+        overflow: hidden;
+        width: 75px;
+        height: 75px;
+        display: inline-block;
+    }
+    
+    .playerstat ion-icon{
+        padding-top: 30px;
+        font-size: 2em;
+    }
+
+    .select-icon,
+    .select-text {
+        visibility: hidden;
+    }
+
+    .select-placeholder{
+        visibility: visible;
+    }
+
+    .playerstat{
+        margin-top: 1.6rem;
+    }
+    
+    .playerstatData{
+        padding-top: 0px;
+        margin-top: 0px;
+    }
+
+    canvas{
+        padding-bottom: 100px;
+        position:absolute;
+        top:-7px;
+        left:50%;
+        margin-left: -50px;
+        z-index:-10;
+    }
+
+    .datetime{
+        color: rgb(131, 131, 131);
+    }
+
+    .score {
+        padding: 0 9px;
+        span:first-child {
+              width: 40%;
+        }
+        span:last-child {
+             width: 40%;
+        }
+        span {
+            display: inline-block;
+            width: 20%;
             text-align: center;
         }
+    }
 
-        ion-row,
-        ion-row.reverse.row,
-        ion-row.playerstat.row{
-            margin: 0px;
-            padding: 0px;
-        }
-    
-        ion-select {
-            max-width: 100%;
-            font-size: 0.7em;
-        }
-    
-       ion-avatar .player-img{
-           
-            border-radius: 50%;
-            overflow: hidden;
-            width: 75px;
-            height: 75px;
-            display: inline-block;
-        }
-    
-        .playerstat ion-icon{
-            padding-top: 30px;
-            font-size: 2em;
-        }
-
-        .scroll-content {
-            padding-top: 16px;
-        }
-
-        .scroll-content ion-row {
-            padding-bottom: 16px;
-        }
-    
-        .select-icon,
-        .select-text {
-            visibility: hidden;
-        }
-
-        .select-placeholder{
-            visibility: visible;
-        }
-
-        .playerstat{
-            padding-top: 15px;
-        }
-    
-        .playerstatData{
-            padding-top: 0px;
-            margin-top: 0px;
-        }
-
-        canvas{
-            padding-bottom: 100px;
-            position:absolute;
-            top:-7px;
-            left:50%;
-            margin-left: -50px;
-            z-index:-10;
-        }
-        
-        .datetime{
-            color: rgb(131, 131, 131);
-        }
-
-        .result{
-            display: inline-block;
-            text-align: right;
-            min-width: 20px;
-        }
-
-        .list> * {
-            margin: 0px 0.3em;
-        }
-
-        .opName {
-            display: inline-block;
-            min-width: 100px;
-        }
-
-        .reverse { flex-direction: row-reverse; }
 }
