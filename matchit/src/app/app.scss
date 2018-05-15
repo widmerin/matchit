@@ -28,11 +28,10 @@ ion-header {
         min-height: 60px;
         vertical-align: middle;
         ion-title {
-            padding: 0 30px 1px;
             vertical-align: middle;
             height: 100%;
             .toolbar-title{
-                color: #FFF;
+                color:white;
             }
         }
         ion-row {
@@ -44,6 +43,7 @@ ion-header {
         }
     }
 }
+
 
 button.button-md{
 	color: color($colors, dark);
@@ -57,3 +57,28 @@ ion-item-options button.button-md{
     background: #333;
     color: whitesmoke;
 }
+
+//ios notch fix
+.toolbar-background-ios {
+    background: #222;
+}
+
+.ios .navbar{
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+  }
+
+.ios .toolbar{
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+  }
+  
+  .ios .toolbar-title{
+    border: 0px;
+    color:white;
+    margin: 0px;
+    padding: 0px 0px 75px 0px;
+  }
+  $toolbar-ios-title-font-size: 1.7em;
