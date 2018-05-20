@@ -1,0 +1,62 @@
+<ion-header>
+    <ion-navbar>
+        <ion-grid>
+            <ion-row>
+                <ion-col col-1>
+                    <img src="assets/imgs/logo.png" class="logo" />
+                </ion-col>
+                <ion-col col-10>
+                    <ion-title>Groups</ion-title>
+                </ion-col>
+                <ion-col col-1></ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <ion-grid>
+        <ion-row>
+            <ion-col col-1></ion-col>
+            <ion-col col-10>
+                <p>Select your group, or create a new one.</p>
+            </ion-col>
+            <ion-col col-1></ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-12>
+                <ion-list>
+                    <ion-item-sliding *ngFor="let group of groups | async" #slidingItem>
+                        <ion-item (click)="setGroup(group)">
+                            <ion-avatar item-start>
+                                <img [src]="group.img">
+                            </ion-avatar>
+                            <ion-label>
+                                {{group.name}}
+                                <ion-icon class="checkicon" name="checkmark" [hidden]="group.key!==this.selectedGroup.key"></ion-icon>
+                            </ion-label>
+                        </ion-item>
+                        <ion-item-options>
+                            <button ion-button color="danger" (click)="deleteItem(group, slidingItem)">
+                                <span class="button-inner">
+                                    <ion-icon name="trash" ion-icon></ion-icon>Delete
+                                </span>
+                            </button>
+                            <button ion-button color="success" (click)="openModal(group)">
+                                <span class="button-inner">
+                                    <ion-icon name="create" ion-icon></ion-icon>Edit
+                                </span>
+                            </button>
+                        </ion-item-options>
+                    </ion-item-sliding>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-fab right bottom>
+        <button ion-fab color="danger" (click)="openModal()">
+            <ion-icon name="add"></ion-icon>
+        </button>
+    </ion-fab>
+</ion-content>

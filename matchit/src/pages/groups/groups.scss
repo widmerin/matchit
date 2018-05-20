@@ -1,0 +1,21 @@
+page-groups {
+    ion-avatar{
+        font-size: 50px;
+    }
+    ion-item-sliding {
+    	.item-md {
+    		padding-left: 0;
+    	}
+    }
+
+    ion-item-sliding.item-wrapper > ion-item{
+        background: #333;
+        color: whitesmoke;
+    }
+
+   
+   .checkicon{
+        float: right;
+        color: greenyellow;
+    }
+}

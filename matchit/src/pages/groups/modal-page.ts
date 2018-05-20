@@ -1,21 +1,19 @@
 import { Component } from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'modal-page',
   templateUrl: 'modal-page.html'
   })
-export class PlayerModalPage {
-    buttonText = "Add Player";
-    newPlayer = {
+
+export class GroupsModalPage {
+    buttonText = "Add Group";
+    newGroup = {
       key: null,
-      img: './assets/imgs/avatar.png',
-      name: '',
-      groupID: ''
+      img: './assets/imgs/groups.png',
+      name: ''
     };
-    currentGroup: any;
     private options: CameraOptions = {
       quality: 50,
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -28,49 +26,32 @@ export class PlayerModalPage {
     }
     
 
-  constructor(public navParams: NavParams, public viewCtrl: ViewController, private camera: Camera, private storage: Storage) {
-    
-    //get currentGroup from local storage
-    this.getCurrentGroup();
-    
+  constructor(public navParams: NavParams, public viewCtrl: ViewController, private camera: Camera) {
     if(this.navParams.get('key') != null){
-      //player modal opend with player to edit
-      this.buttonText = "Update Player";
-      this.newPlayer = {
+      this.buttonText = "Update Group";
+      this.newGroup = {
         key: this.navParams.get('key'),
         img: this.navParams.get('img'),
-        name: this.navParams.get('name'),
-        groupID: this.navParams.get('groupID')
-      };
-    }else{
-      //player modal opend with no player (to create a new one) with currentGroupID
-      this.newPlayer = {
-        key: null,
-        img: './assets/imgs/avatar.png',
-        name: '',
-        groupID: this.currentGroup.groupID
+        name: this.navParams.get('name')
       };
     }
   }
+
   closeModal() {
     this.viewCtrl.dismiss();
   }
 
-  saveModal(newPlayer) {
-    this.viewCtrl.dismiss(this.newPlayer);
+  saveModal(newGroup) {
+    this.viewCtrl.dismiss(this.newGroup);
   }
 
-//read local storage for currentGroup
-getCurrentGroup(){
-  this.currentGroup = this.storage.get('group').then((val) => val);
-}
 
   takePicture() {
     this.camera.getPicture(this.options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64:
       let base64Image = 'data:image/jpeg;base64,' + imageData;
-      this.newPlayer.img = base64Image;
+      this.newGroup.img = base64Image;
     }, (err) => {
       // Handle error
       console.log("failed on taking picture");
