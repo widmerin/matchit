@@ -28,8 +28,8 @@ export class FirebaseServiceProvider {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
     });
 
-    // this.playersRef.push({ name: 'Michaela', img: './assets/imgs/Michaela.png' , groupID: '-LCyP0s2XwISI7_yjZKK'});
-    // this.playersRef.push({ name: 'Melanie', img: './assets/imgs/Melanie.png' , groupID: '-LCyT0D7IimKfrfOqIF-'});
+    //this.playersRef.push({ name: 'Michaela', img: './assets/imgs/Michaela.png' , groupid: '-LCyP0s2XwISI7_yjZKK'});
+    //this.playersRef.push({ name: 'Melanie', img: './assets/imgs/Melanie.png' , groupid: '-LCyT0D7IimKfrfOqIF-'});
 
 
     this.scores = this.scoreRef.snapshotChanges().map(changes => {
@@ -80,7 +80,7 @@ export class FirebaseServiceProvider {
     return this.playersRef.push({
       name: player.name,
       img: player.img,
-      groupID: player.groupID
+      groupid: player.groupid
     });
   }
 
@@ -89,7 +89,7 @@ export class FirebaseServiceProvider {
       key, {
         name: player.name,
         img: player.img,
-        groupID: player.groupID
+        groupid: player.groupid
       });
   }
 

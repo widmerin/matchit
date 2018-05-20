@@ -13,7 +13,7 @@ export class PlayerModalPage {
       key: null,
       img: './assets/imgs/avatar.png',
       name: '',
-      groupID: ''
+      groupid: ''
     };
     currentGroup: any;
     private options: CameraOptions = {
@@ -30,6 +30,9 @@ export class PlayerModalPage {
 
   constructor(public navParams: NavParams, public viewCtrl: ViewController, private camera: Camera, private storage: Storage) {
     
+    //set default group
+    this.currentGroup = {key:"world"};
+
     //get currentGroup from local storage
     this.getCurrentGroup();
     
@@ -40,15 +43,15 @@ export class PlayerModalPage {
         key: this.navParams.get('key'),
         img: this.navParams.get('img'),
         name: this.navParams.get('name'),
-        groupID: this.navParams.get('groupID')
+        groupid: this.navParams.get('groupid')
       };
     }else{
-      //player modal opend with no player (to create a new one) with currentGroupID
+      //player modal opend with no player (to create a new one) with current group key
       this.newPlayer = {
         key: null,
         img: './assets/imgs/avatar.png',
         name: '',
-        groupID: this.currentGroup.groupID
+        groupid: this.currentGroup.key
       };
     }
   }
@@ -57,12 +60,14 @@ export class PlayerModalPage {
   }
 
   saveModal(newPlayer) {
+     //get currentGroup from local storage
+     this.getCurrentGroup();
     this.viewCtrl.dismiss(this.newPlayer);
   }
 
 //read local storage for currentGroup
 getCurrentGroup(){
-  this.currentGroup = this.storage.get('group').then((val) => val);
+  this.storage.get('group').then(val => this.currentGroup = val);
 }
 
   takePicture() {

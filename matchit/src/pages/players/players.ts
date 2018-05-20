@@ -27,7 +27,7 @@ export class PlayersPage {
 
     myModal.onDidDismiss(player => {
       if(player && player !== 'null' && player !== 'undefined') {
-        console.log("onDidDismiss"+player.name);
+        console.log("onDidDismiss "+player.name);
         if(player.key != null){
           //Update player
           this.firebaseService.updatePlayer(player.key, player);           
