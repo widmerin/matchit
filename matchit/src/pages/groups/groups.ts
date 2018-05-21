@@ -59,8 +59,7 @@ export class GroupsPage {
   setGroup(group) {
     this.events.publish('functionCall:groupSet', group);
     this.selectedGroup = group
-    console.log('selected group is', this.selectedGroup.name);
-    // set a key/value
+    //save group locally
     this.storage.set('group', group);
   }
 

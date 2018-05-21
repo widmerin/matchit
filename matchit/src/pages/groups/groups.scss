@@ -17,6 +17,6 @@ page-groups {
    .checkicon{
         float: right;
         color: greenyellow;
-        margin-top: -20px;
+        /*margin-top: -20px; for browser desktop, but fails or hides icon on mobile, so leave in comments */
     }
 }
