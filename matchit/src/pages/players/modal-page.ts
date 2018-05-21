@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { Storage } from '@ionic/storage';
+
 
 @Component({
   selector: 'modal-page',
   templateUrl: 'modal-page.html'
-  })
+})
+
 export class PlayerModalPage {
     buttonText = "Add Player";
     newPlayer = {
@@ -15,7 +16,6 @@ export class PlayerModalPage {
       name: '',
       groupid: ''
     };
-    currentGroup: any;
     private options: CameraOptions = {
       quality: 50,
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -26,16 +26,11 @@ export class PlayerModalPage {
       targetWidth: 600,
       targetHeight: 600
     }
-    
+  
 
-  constructor(public navParams: NavParams, public viewCtrl: ViewController, private camera: Camera, private storage: Storage) {
+  constructor(public navParams: NavParams, public viewCtrl: ViewController, private camera: Camera) {
     
-    //set default group
-    this.currentGroup = {key:"world"};
-
-    //get currentGroup from local storage
-    this.getCurrentGroup();
-    
+      
     if(this.navParams.get('key') != null){
       //player modal opend with player to edit
       this.buttonText = "Update Player";
@@ -45,30 +40,19 @@ export class PlayerModalPage {
         name: this.navParams.get('name'),
         groupid: this.navParams.get('groupid')
       };
-    }else{
-      //player modal opend with no player (to create a new one) with current group key
-      this.newPlayer = {
-        key: null,
-        img: './assets/imgs/avatar.png',
-        name: '',
-        groupid: this.currentGroup.key
-      };
     }
   }
+
+
   closeModal() {
     this.viewCtrl.dismiss();
   }
 
   saveModal(newPlayer) {
-     //get currentGroup from local storage
-     this.getCurrentGroup();
     this.viewCtrl.dismiss(this.newPlayer);
   }
 
-//read local storage for currentGroup
-getCurrentGroup(){
-  this.storage.get('group').then(val => this.currentGroup = val);
-}
+
 
   takePicture() {
     this.camera.getPicture(this.options).then((imageData) => {

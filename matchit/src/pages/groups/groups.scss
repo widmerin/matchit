@@ -3,6 +3,7 @@ page-groups {
         font-size: 50px;
     }
     ion-item-sliding {
+        
     	.item-md {
     		padding-left: 0;
     	}
@@ -12,10 +13,10 @@ page-groups {
         background: #333;
         color: whitesmoke;
     }
-
    
    .checkicon{
         float: right;
         color: greenyellow;
+        margin-top: -20px;
     }
 }

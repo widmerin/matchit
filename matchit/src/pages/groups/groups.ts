@@ -5,6 +5,8 @@ import { GroupsModalPage } from './modal-page';
 import { FirebaseServiceProvider } from './../../providers/firebase-service/firebase-service';
 import { Observable } from 'rxjs/Observable';
 import { Storage } from '@ionic/storage';
+import { HomePage } from '../home/home';
+import { Events } from 'ionic-angular';
 
 @Component({
   selector: 'page-groups',
@@ -17,7 +19,7 @@ export class GroupsPage {
   groups: Observable<any[]>;
   selectedGroup: any
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public firebaseService: FirebaseServiceProvider, private storage: Storage) {
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public firebaseService: FirebaseServiceProvider, private storage: Storage, public events: Events) {
 
     this.groups = this.firebaseService.getGroups();
     this.selectedGroup = {
@@ -25,11 +27,11 @@ export class GroupsPage {
       img: './assets/imgs/groups.png',
       name: null
     };
-    // Or to get a key/value pair
+    // get saved group
     storage.get('group').then((val) => {
       if(val){
-        //console.log('saved group is', val.name);
         this.selectedGroup = val;
+        console.log('saved group is', this.selectedGroup.name);
       }
     });
   }
@@ -56,7 +58,9 @@ export class GroupsPage {
   }
 
   setGroup(group) {
+    this.events.publish('functionCall:groupSet', group);
     this.selectedGroup = group
+    console.log('selected group is', this.selectedGroup.name);
     // set a key/value
     this.storage.set('group', group);
   }
