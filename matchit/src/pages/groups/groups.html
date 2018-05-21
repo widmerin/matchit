@@ -26,15 +26,28 @@
         <ion-row>
             <ion-col col-12>
                 <ion-list>
+
+                    <ion-item-sliding>
+                        <ion-item (click)="setDefaultGroup()">
+                            <ion-avatar item-start>
+                                <img src="assets/imgs/world.png">
+                            </ion-avatar>
+                            <p>World</p>
+                            <ion-note item-end>
+                                <ion-icon class="checkicon" name="checkmark" [hidden]="'world'!=this.selectedGroup.key"></ion-icon>
+                            </ion-note>
+                        </ion-item>
+                    </ion-item-sliding>
+
                     <ion-item-sliding *ngFor="let group of groups | async" #slidingItem>
                         <ion-item (click)="setGroup(group)">
                             <ion-avatar item-start>
                                 <img [src]="group.img">
                             </ion-avatar>
-                            <ion-label>
-                                {{group.name}}
+                            <p>{{group.name}}</p>
+                            <ion-note item-end>
                                 <ion-icon class="checkicon" name="checkmark" [hidden]="group.key!==this.selectedGroup.key"></ion-icon>
-                            </ion-label>
+                            </ion-note>
                         </ion-item>
                         <ion-item-options>
                             <button ion-button color="danger" (click)="deleteItem(group, slidingItem)">

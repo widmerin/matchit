@@ -24,13 +24,14 @@ export class GroupsPage {
     this.selectedGroup = {
       key: null,
       img: './assets/imgs/groups.png',
-      name: null
+      name: "World"
     };
     // get saved group
     storage.get('group').then((val) => {
-      if(val){
+      if(null!==val || undefined!==val){
         this.selectedGroup = val;
         console.log('saved group is', this.selectedGroup.name);
+        this.events.publish('functionCall:groupSet', val);
       }
     });
   }
@@ -57,6 +58,14 @@ export class GroupsPage {
   }
 
   setGroup(group) {
+    this.events.publish('functionCall:groupSet', group);
+    this.selectedGroup = group
+    //save group locally
+    this.storage.set('group', group);
+  }
+
+  setDefaultGroup() {
+    var group = {key:"world"};
     this.events.publish('functionCall:groupSet', group);
     this.selectedGroup = group
     //save group locally

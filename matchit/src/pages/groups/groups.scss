@@ -3,15 +3,26 @@ page-groups {
         font-size: 50px;
     }
     ion-item-sliding {
-        
+        background: #333;
+
     	.item-md {
     		padding-left: 0;
     	}
     }
-
-    ion-item-sliding.item-wrapper > ion-item{
+    ion-item-options{
         background: #333;
-        color: whitesmoke;
+    }
+    ion-item-sliding.item-wrapper > ion-item{
+       background: #333;
+  
+
+        p{
+            margin: 0px;
+            padding: 0px;
+            font-size: 1em;
+            color: whitesmoke;
+        }
+
     }
    
    .checkicon{

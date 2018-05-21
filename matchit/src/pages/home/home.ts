@@ -28,8 +28,8 @@ export class HomePage {
   constructor(public navCtrl: NavController, public firebaseService: FirebaseServiceProvider, private storage: Storage, public events: Events) {
     
     this.currentGroup = {key:"world"};
-     //get currentGroup from local storage
-     this.getCurrentGroup();
+    //get currentGroup from local storage
+    this.getCurrentGroup();
     
     for (let index = this.scoreMax; index >= this.scoreMin; index--) {
       this.scoreRange.push(index);
@@ -46,8 +46,8 @@ export class HomePage {
     }
 
     events.subscribe('functionCall:groupSet', (group) => {
-      this.resetPlayers();
       this.currentGroup = group;
+      this.resetPlayers();
     });
      
    
@@ -98,7 +98,6 @@ export class HomePage {
   updatePlayersLeft() {
     let keyLeft = this.score.playerLeft.key;
     this.playersRight = this.filterPlayer(keyLeft);
-    
   }
 
   updatePlayersRight() {
@@ -107,15 +106,21 @@ export class HomePage {
   }
 
   filterPlayer(key){
-    console.log(this.currentGroup.key);
     
-    if(key!=null && this.currentGroup!=undefined) {
+    if (key===null && (this.currentGroup === undefined || "world" === this.currentGroup.key)){
+        //do not filter
+        return this.players;
+    } else if (key!=null && (this.currentGroup === undefined || "world" === this.currentGroup.key)){
+       //filter by player key
+       return this.players.map(items => items.filter(p => p.key != key))
+    } else if (key!=null && this.currentGroup!=undefined) {
+      //filter by player.key and groups
       return this.players.map(items => items.filter(p => p.key != key && p.groupid === this.currentGroup.key))
-    } else if(this.currentGroup!=undefined){
+    } else if (this.currentGroup!=undefined){
+      //filter by groups (only)
       return this.players.map(items => items.filter(p => p.groupid === this.currentGroup.key))
-    } else {
-      return this.players;
     }
+   
   }
   
   saveScore(){
@@ -138,6 +143,6 @@ export class HomePage {
         this.currentGroup = {key:"world"};
       }
     });
-  }
+   }
 
 }
