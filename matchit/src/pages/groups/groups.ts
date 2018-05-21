@@ -5,7 +5,6 @@ import { GroupsModalPage } from './modal-page';
 import { FirebaseServiceProvider } from './../../providers/firebase-service/firebase-service';
 import { Observable } from 'rxjs/Observable';
 import { Storage } from '@ionic/storage';
-import { HomePage } from '../home/home';
 import { Events } from 'ionic-angular';
 
 @Component({

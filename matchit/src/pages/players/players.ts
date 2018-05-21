@@ -5,6 +5,7 @@ import { PlayerModalPage } from './modal-page';
 import { FirebaseServiceProvider } from './../../providers/firebase-service/firebase-service';
 import { Observable } from 'rxjs/Observable';
 import { Storage } from '@ionic/storage';
+import { Events } from 'ionic-angular';
 
 @Component({
   selector: 'page-players',
@@ -18,13 +19,17 @@ export class PlayersPage {
   currentGroup: any;
    
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public firebaseService: FirebaseServiceProvider, private storage: Storage) {
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public firebaseService: FirebaseServiceProvider, private storage: Storage, public events: Events) {
     //set default group
     this.currentGroup = {key:"world"};
     //get currentGroup from local storage
     this.getCurrentGroup();
     //get players
     this.players = this.firebaseService.getPlayers();
+
+    events.subscribe('functionCall:groupSet', (group) => {
+      this.currentGroup = group;
+    });
   }
 
  
