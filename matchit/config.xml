@@ -85,8 +85,8 @@
     <allow-navigation href="http://192.168.0.86:8100" />
     <allow-navigation href="http://10.175.51.212:8100" />
     <allow-navigation href="http://192.168.8.100:8100" />
-    <allow-navigation href="http://192.168.8.118:8100" />
-    <plugin name="cordova-sqlite-storage" spec="^2.3.1" />
     <engine name="android" spec="~7.0.0" />
     <engine name="ios" spec="~4.5.4" />
+    <allow-navigation href="http://192.168.8.118:8100" />
+    <plugin name="cordova-sqlite-storage" spec="^2.3.1" />
 </widget>
