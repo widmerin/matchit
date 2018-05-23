@@ -17,13 +17,13 @@ export class PlayersPage {
 
   players: Observable<any[]>;
   currentGroup: any;
-   
-
+ 
   constructor(public navCtrl: NavController, public modalCtrl: ModalController, public firebaseService: FirebaseServiceProvider, private storage: Storage, public events: Events) {
     //set default group
     this.currentGroup = {key:"world"};
     //get currentGroup from local storage
     this.getCurrentGroup();
+   
     //get players
     this.players = this.firebaseService.getPlayers();
 

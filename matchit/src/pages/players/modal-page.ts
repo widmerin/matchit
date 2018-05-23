@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Observable } from 'rxjs/Observable';
+import { FirebaseServiceProvider } from './../../providers/firebase-service/firebase-service';
 
 
 @Component({
@@ -16,6 +18,8 @@ export class PlayerModalPage {
       name: '',
       groupid: ''
     };
+    groups: Observable<any[]>; 
+
     private options: CameraOptions = {
       quality: 50,
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -28,8 +32,11 @@ export class PlayerModalPage {
     }
   
 
-  constructor(public navParams: NavParams, public viewCtrl: ViewController, private camera: Camera) {
+  constructor(public navParams: NavParams, public viewCtrl: ViewController, private camera: Camera, public firebaseService: FirebaseServiceProvider) {
     
+     //get Groups (all)
+     this.groups = this.firebaseService.getGroups();
+
       
     if(this.navParams.get('key') != null){
       //player modal opend with player to edit
