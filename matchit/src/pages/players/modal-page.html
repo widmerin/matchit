@@ -41,10 +41,7 @@
             <ion-input type="text" required [(ngModel)]="this.newPlayer.name"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label floating requried>Group</ion-label>
-            <ion-input type="text" required [(ngModel)]="this.newPlayer.groupid"></ion-input>
-          </ion-item>
-          <ion-item>
+              <ion-label floating requried>Group</ion-label>
           <ion-select interface="action-sheet" cancelText="Dismiss" class="select-group" [(ngModel)]="this.newPlayer.groupid">
             <ion-option *ngFor="let group of groups | async" [value]="group.key">{{group.name}}</ion-option>
           </ion-select>
