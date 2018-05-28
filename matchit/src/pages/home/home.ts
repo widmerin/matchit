@@ -23,11 +23,10 @@ export class HomePage {
   playersLeft: Observable<any[]>;
   playersRight: Observable<any[]>;
   score: any;
-  currentGroup: any;
+  currentGroup: any = { key: "world" }
 
   constructor(public navCtrl: NavController, public firebaseService: FirebaseServiceProvider, private storage: Storage, public events: Events) {
     
-    this.currentGroup = {key:"world"};
     //get currentGroup from local storage
     this.getCurrentGroup();
     
