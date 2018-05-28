@@ -4,6 +4,7 @@ import { FirebaseServiceProvider } from './../../providers/firebase-service/fire
 import { Observable } from 'rxjs/Observable';
 import { Storage } from '@ionic/storage';
 import { Events } from 'ionic-angular';
+import { GroupsPage } from '../groups/groups';
 
 @Component({
   selector: 'page-home',
@@ -166,7 +167,7 @@ export class HomePage {
   }
 
   gotoGroups() {
-    //TODO: navigate to groups
+     this.navCtrl.setRoot(GroupsPage, {opentab: 3});
   }
 
 }
