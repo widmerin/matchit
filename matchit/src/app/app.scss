@@ -15,10 +15,10 @@ ion-header {
         p {
             font-size: 1.3em;
             vertical-align: middle;
-           
+
             color:white;
         }
-       
+
     }
 }
 
@@ -33,7 +33,7 @@ button.button-md{
 
 ion-item-options button.button-md{
     color: #FFF;
-}   
+}
 
 .scroll-content{
     background: #333;
@@ -56,12 +56,23 @@ ion-item-options button.button-md{
     padding: 0px;
     border: 0px;
 }
-  
+
 .ios .toolbar-title{
     border: 0px;
     color:white;
     margin: 0px;
     padding: 0px 0px 75px 0px;
+}
+
+
+.raised {
+ box-shadow: 2px 4px 8px 0 rgba(255, 255, 255, 0.2);
+}
+
+.tabs-md-dark .tab-button:hover:not(.disable-hover),
+.tabs-md-dark .tab-button[aria-selected=true],
+.tabs-md-dark .tab-button[aria-selected=true] .tab-button-icon {
+  color: map-get($colors, primary);
 }
 
 $toolbar-ios-title-font-size: 1.7em;

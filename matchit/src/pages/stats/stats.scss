@@ -10,21 +10,21 @@ page-stats {
         margin: 0px;
         padding: 0px;
     }
-    
+
     ion-select {
         max-width: 100%;
         font-size: 0.7em;
     }
-    
+
     ion-avatar .player-img{
         border-radius: 50%;
         overflow: hidden;
         margin-top: 14px;
-        width: 75px;
-        height: 75px;
+        width: 100px;
+        height: 100px;
         display: inline-block;
     }
-    
+
     .playerstat ion-icon{
         padding-top: 20px;
         font-size: 2em;
@@ -43,7 +43,7 @@ page-stats {
         margin-top: 1.6rem;
 
     }
-    
+
     .playerstatData{
         padding-top: 0px;
         margin-top: 0px;
@@ -52,7 +52,7 @@ page-stats {
         position:absolute;
         top:7px;
         left:50%;
-        margin-left: -50px;
+        margin-left: -62px;
         display: inline-block;
         z-index:-10;
     }

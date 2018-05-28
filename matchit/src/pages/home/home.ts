@@ -23,24 +23,26 @@ export class HomePage {
   playersLeft: Observable<any[]>;
   playersRight: Observable<any[]>;
   score: any;
+  scoreIsNotValid: boolean = false;
+  state: string = "";
   currentGroup: any = { key: "world" }
 
   constructor(public navCtrl: NavController, public firebaseService: FirebaseServiceProvider, private storage: Storage, public events: Events) {
-    
+
     //get currentGroup from local storage
     this.getCurrentGroup();
-    
+
     for (let index = this.scoreMax; index >= this.scoreMin; index--) {
       this.scoreRange.push(index);
     }
-    
+
     this.setupPlayers();
 
     this.score = {
       datetime: null,
-      scoreLeft: null,
+      scoreLeft: 0,
       playerLeft: this.playerLeft,
-      scoreRight: null,
+      scoreRight: 0,
       playerRight: this.playerRight
     }
 
@@ -48,19 +50,19 @@ export class HomePage {
       this.currentGroup = group;
       this.resetPlayers();
     });
-     
-   
+
+
     //get players
     this.players = this.firebaseService.getPlayers();
     this.updatePlayersLeft();
     this.updatePlayersRight();
-        
+
   }
 
   getMatchInvalid() {
     //return invalid
     return !(// valid conditions:
-      //not null 
+      //not null
       (this.score.scoreRight !== null && this.score.scoreLeft !== null
         && this.score.playerLeft.key !== null && this.score.playerRight.key !== null) &&
       //valid scores
@@ -71,6 +73,8 @@ export class HomePage {
         )
       )
   }
+
+
 
   setupPlayers(){
     this.playerLeft = {
@@ -97,15 +101,21 @@ export class HomePage {
   updatePlayersLeft() {
     let keyLeft = this.score.playerLeft.key;
     this.playersRight = this.filterPlayer(keyLeft);
+    this.scoreIsNotValid = false;
   }
 
   updatePlayersRight() {
     let keyRight = this.score.playerRight.key;
-    this.playersLeft = this.filterPlayer(keyRight);      
+    this.playersLeft = this.filterPlayer(keyRight);
+    this.scoreIsNotValid = false;
+  }
+
+  updateScore(){
+    this.scoreIsNotValid = false;
   }
 
   filterPlayer(key){
-    
+
     if (key===null && (this.currentGroup === undefined || "world" === this.currentGroup.key)){
         //do not filter
         return this.players;
@@ -119,20 +129,30 @@ export class HomePage {
       //filter by groups (only)
       return this.players.map(items => items.filter(p => p.groupid === this.currentGroup.key))
     }
-   
+
   }
-  
+
   saveScore(){
     if(!this.getMatchInvalid()) {
      this.firebaseService.addScore(this.score);
 
       //reset score
-      this.score.scoreLeft = null;
-      this.score.scoreRight = null;
+      this.score.scoreLeft = 0;
+      this.score.scoreRight = 0;
+      this.scoreIsNotValid = false;
+    } else {
+      this.scoreIsNotValid = true;
     }
-
   }
 
+  getMessage() {
+    if(this.score.playerLeft.key === null || this.score.playerRight.key === null ){
+       return "please select two players";
+    } else if (this.scoreIsNotValid) {
+      return "Score is invalid. Score is valid if one player has 15 points or if one player has 9 points and the other player 0 points ";
+    }
+    return "";
+  }
   //read local storage for currentGroup
   getCurrentGroup(){
     this.storage.ready().then( () => {

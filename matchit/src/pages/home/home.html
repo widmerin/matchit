@@ -16,21 +16,13 @@
 
 <ion-content padding>
   <ion-grid>
-    <ion-row>
-      <ion-col col-12>
-        <span [hidden]="this.score.scoreLeft!==null && this.score.scoreRight!==null">
-          Enter players and scores...
-        </span>
-        <span [hidden]="getMatchInvalid()">
-          ...press 'save match' to store it. 
-        </span>
-      </ion-col>
-    </ion-row>
     <!--Players-->
-    <ion-row class="track">
-      <ion-col col-5>
+    <ion-row class="players">
+      <ion-col col-1>
+      </ion-col>
+      <ion-col col-4>
         <ion-avatar item-start>
-          <img [src]="score.playerLeft.img" class="player-img">
+          <img [src]="score.playerLeft.img" class="player-img raised">
         </ion-avatar>
         <p>{{score.playerLeft.name}}</p>
         <ion-select interface="action-sheet" cancelText="Dismiss" class="select-player" [(ngModel)]="score.playerLeft" (ngModelChange)="updatePlayersLeft()">
@@ -38,28 +30,30 @@
         </ion-select>
       </ion-col>
       <ion-col col-2 class="vsPlayer">vs.</ion-col>
-      <ion-col col-5>
+      <ion-col col-4>
         <ion-avatar item-start>
-          <img [src]="score.playerRight.img" class="player-img">
+          <img [src]="score.playerRight.img" class="player-img raised">
         </ion-avatar>
          <p>{{score.playerRight.name}}</p>
         <ion-select interface="action-sheet" cancelText="Dismiss" class="select-player" [(ngModel)]="score.playerRight" (ngModelChange)="updatePlayersRight()">
           <ion-option *ngFor="let player of playersRight | async" [value]="player">{{player.name}}</ion-option>
         </ion-select>
       </ion-col>
+      <ion-col col-1>
+      </ion-col>
     </ion-row>
     <!--Scores-->
     <ion-row class="track">
       <ion-col col-2>
       </ion-col>
-      <ion-col col-3 class="score">
-        <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="score.scoreLeft" placeholder="0">
+      <ion-col col-3 class="score raised">
+        <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="score.scoreLeft" placeholder="0" (ngModelChange)="updateScore()">
           <ion-option *ngFor="let score of scoreRange" #item [value]="score">{{score}}</ion-option>
         </ion-select>
       </ion-col>
       <ion-col col-2 class="score vs">:</ion-col>
-      <ion-col col-3 class="score">
-        <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="score.scoreRight" placeholder="0">
+      <ion-col col-3 class="score raised">
+        <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="score.scoreRight" placeholder="0" (ngModelChange)="updateScore()">
           <ion-option *ngFor="let score of scoreRange" #item [value]="score">{{score}}</ion-option>
         </ion-select>
       </ion-col>
@@ -67,13 +61,24 @@
       </ion-col>
     </ion-row>
     <!--Save Button-->
-    <ion-row>
+    <ion-row class="controls">
       <ion-col col-2>
       </ion-col>
       <ion-col col-8>
-        <button ion-button block  (click)="saveScore()" [disabled]=getMatchInvalid()>Save match</button>
+        <button ion-button block class="raised" (click)="saveScore()">Save match</button>
       </ion-col>
       <ion-col col-2>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+        <span class="info" [hidden]="this.score.scoreLeft!==null && this.score.scoreRight!==null">
+          Enter players and scores...
+        </span>
+        <span class="info" [hidden]="getMatchInvalid()">
+          ...press 'save match' to store it.
+        </span>
+        <span class="warning" [hidden]="!scoreIsNotValid">{{this.getMessage()}}</span>
       </ion-col>
     </ion-row>
   </ion-grid>

@@ -19,7 +19,7 @@ export class StatsPage {
   winCount: number;
   winPercentage: number;
   playerStat: any;
-  canvasSize = 100;
+  canvasSize = 125;
   /**
       * Scores are stored like this:
       *
@@ -66,10 +66,10 @@ export class StatsPage {
 
   getWinCount(key){
     this.winCountList = this.scoresForPlayer.map(items =>
-      items.filter(score => 
-        score.playerLeft.key === key && score.scoreLeft === 15 || 
+      items.filter(score =>
+        score.playerLeft.key === key && score.scoreLeft === 15 ||
         score.playerRight.key === key && score.scoreRight === 15 ||
-        score.playerLeft.key === key && score.scoreLeft === 9 && score.scoreRight === 0 || 
+        score.playerLeft.key === key && score.scoreLeft === 9 && score.scoreRight === 0 ||
         score.playerRight.key === key && score.scoreRight === 9 && score.scoreLeft === 0
       ));
 
@@ -135,7 +135,7 @@ export class StatsPage {
 
   //******Progress Pie*******/
   //based on code by Dierk König//
-  
+
   /**
     * Detect if HTML5 Canvas is supported and, if so, configure the
     * canvas element accordingly
@@ -202,13 +202,13 @@ export class StatsPage {
       redim();
 
       // red background
-      pieSlice(0, 100, radius*0.99, "#5a41ff"); //matchitblue
+      pieSlice(0, 100, radius*0.99, "#ff7473"); //matchitblue
 
       //green wins
       ctx.beginPath();
       ctx.moveTo(centerx, centery);
       ctx.arc(centerx, centery, radius, adjust(0), adjust(progressFraction), false);
-      ctx.fillStyle = "#6fffc8"; // matchitgreen
+      ctx.fillStyle = "#47b8e0"; // matchitgreen
       ctx.fill();
     }
 
