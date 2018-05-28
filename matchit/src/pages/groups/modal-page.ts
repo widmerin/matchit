@@ -14,6 +14,7 @@ export class GroupsModalPage {
       img: './assets/imgs/groups.png',
       name: ''
     };
+    
     private options: CameraOptions = {
       quality: 50,
       destinationType: this.camera.DestinationType.DATA_URL,

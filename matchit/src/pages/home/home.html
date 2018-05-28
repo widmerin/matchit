@@ -22,10 +22,21 @@
           Enter players and scores...
         </span>
         <span [hidden]="getMatchInvalid()">
-          ...press 'save match' to store it. 
+          ...press 'save match' to store it.
         </span>
       </ion-col>
     </ion-row>
+
+    <!--Groups-->
+    <ion-row class="group">
+        <ion-item (click)="gotoGroups()">
+            <ion-avatar item-start>
+                <img [src]=this.currentGroup.img>
+            </ion-avatar>
+            <p> {{this.currentGroup.name}}</p>
+        </ion-item>
+    </ion-row>
+
     <!--Players-->
     <ion-row class="track">
       <ion-col col-5>
@@ -42,7 +53,7 @@
         <ion-avatar item-start>
           <img [src]="score.playerRight.img" class="player-img">
         </ion-avatar>
-         <p>{{score.playerRight.name}}</p>
+        <p>{{score.playerRight.name}}</p>
         <ion-select interface="action-sheet" cancelText="Dismiss" class="select-player" [(ngModel)]="score.playerRight" (ngModelChange)="updatePlayersRight()">
           <ion-option *ngFor="let player of playersRight | async" [value]="player">{{player.name}}</ion-option>
         </ion-select>
@@ -71,7 +82,7 @@
       <ion-col col-2>
       </ion-col>
       <ion-col col-8>
-        <button ion-button block  (click)="saveScore()" [disabled]=getMatchInvalid()>Save match</button>
+        <button ion-button block (click)="saveScore()" [disabled]=getMatchInvalid()>Save match</button>
       </ion-col>
       <ion-col col-2>
       </ion-col>

@@ -43,7 +43,33 @@ page-home {
         font-weight: bold;
        
     }
-    .select-icon {
-		visibility: hidden;
-	}
+    .track{
+        .select-icon {
+		    visibility: hidden;
+	    }
+    }
+
+    .group {
+        ion-item {
+            background: transparent;
+           
+            border: 0px;
+
+            p{
+                 color: whitesmoke;
+            }
+        }
+          
+        
+        img {
+            height: 20vw; 
+            width: 20vw; 
+            max-height: 50px;
+            max-width: 50px;
+            border-radius: 50%;
+        }
+    } 
+
+    
+   
 }

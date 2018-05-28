@@ -23,9 +23,16 @@ export class HomePage {
   playersLeft: Observable<any[]>;
   playersRight: Observable<any[]>;
   score: any;
-  currentGroup: any = { key: "world" }
+  groups: Observable<any[]>;
+  currentGroup: any = {
+      key: 'world',
+      img: './assets/imgs/world.png',
+      name: 'World'
+  };
 
   constructor(public navCtrl: NavController, public firebaseService: FirebaseServiceProvider, private storage: Storage, public events: Events) {
+    
+    this.groups = this.firebaseService.getGroups();
     
     //get currentGroup from local storage
     this.getCurrentGroup();
@@ -133,16 +140,33 @@ export class HomePage {
 
   }
 
+  setDefaultGroup() {
+    let group = {
+      key: 'world',
+      img: './assets/imgs/world.png',
+      name: 'World'
+    };
+    this.events.publish('functionCall:groupSet', group);
+    this.currentGroup = group
+    //save group locally
+    this.storage.set('group', group);
+  }
+
   //read local storage for currentGroup
   getCurrentGroup(){
     this.storage.ready().then( () => {
       var val = this.storage.get('group');
-      if(null!==val || undefined!==val) {
+      if(null!==val && undefined!==val) {
         this.currentGroup = val;
       }else{
-        this.currentGroup = {key:"world"};
+        //set defaultGroup
+        this.setDefaultGroup();
       }
     });
+  }
+
+  gotoGroups() {
+    //TODO: navigate to groups
   }
 
 }
