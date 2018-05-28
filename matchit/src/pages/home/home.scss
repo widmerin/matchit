@@ -61,4 +61,34 @@ page-home {
   .controls ion-col{
     padding: 0px;
   }
+
+   .track{ 
+        .select-icon { 
+        visibility: hidden; 
+      } 
+    } 
+ 
+    .group { 
+        ion-item { 
+            background: transparent; 
+            
+            border: 0px; 
+ 
+            p{ 
+                 color: whitesmoke; 
+            } 
+        } 
+        .item-md.item-block .item-inner {
+            border: none;
+        }
+           
+         
+        img { 
+            height: 20vw;  
+            width: 20vw;  
+            max-height: 50px; 
+            max-width: 50px; 
+            border-radius: 50%; 
+        } 
+    }  
 }
