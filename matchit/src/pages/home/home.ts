@@ -154,13 +154,13 @@ export class HomePage {
 
   //read local storage for currentGroup
   getCurrentGroup(){
-    this.storage.ready().then( () => {
-      var val = this.storage.get('group');
-      if(null!==val && undefined!==val) {
+    this.storage.get('group').then(val => {
+      if (null != val || undefined != val) {
         this.currentGroup = val;
-      }else{
-        //set defaultGroup
-        this.setDefaultGroup();
+        this.events.publish('functionCall:groupSet', val);
+      } else {
+          //set defaultGroup
+          this.setDefaultGroup();
       }
     });
   }

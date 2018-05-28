@@ -27,10 +27,10 @@ export class GroupsPage {
     this.groups = this.firebaseService.getGroups();
 
     //read local storage for selectedGroup
-    this.storage.ready().then(() => {
-      var val = this.storage.get('group');
+    this.storage.get('group').then(val => {
       if (null != val || undefined != val) {
         this.selectedGroup = val;
+        this.events.publish('functionCall:groupSet', val);
       } else {
         this.selectedGroup = { key: "world" };
       }
