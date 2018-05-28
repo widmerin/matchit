@@ -32,20 +32,14 @@
         <ion-list>
           <div text-center>
             <div class="user-img" (click)="takePicture()">
-              <img [src]="this.newPlayer.img">
+              <img [src]="this.newGroup.img">
               <ion-icon name="camera" ion-icon></ion-icon>
             </div>
           </div>
           <ion-item>
             <ion-label floating requried>Name</ion-label>
-            <ion-input type="text" required [(ngModel)]="this.newPlayer.name"></ion-input>
+            <ion-input type="text" required [(ngModel)]="this.newGroup.name"></ion-input>
           </ion-item>
-          <ion-item>
-              <ion-label floating requried>Group</ion-label>
-          <ion-select interface="action-sheet" cancelText="Dismiss" class="select-group" [(ngModel)]="this.newPlayer.groupid">
-            <ion-option *ngFor="let group of groups | async" [value]="group.key">{{group.name}}</ion-option>
-          </ion-select>
-        </ion-item>
         </ion-list>
       </ion-col>
     </ion-row>
@@ -53,7 +47,7 @@
       <ion-col col-2>
       </ion-col>
       <ion-col col-8>
-        <button ion-button block (click)="saveModal()" [disabled]="this.newPlayer.name.length === 0">{{ this.buttonText }}</button>
+        <button ion-button block (click)="saveModal()" [disabled]="this.newGroup.name.length === 0">{{ this.buttonText }}</button>
       </ion-col>
       <ion-col col-2>
       </ion-col>

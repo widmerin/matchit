@@ -2,6 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, Content } from 'ionic-angular';
 import { FirebaseServiceProvider } from './../../providers/firebase-service/firebase-service';
 import { Observable } from 'rxjs/Observable';
+import { Storage } from '@ionic/storage';
+import { Events } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -21,25 +23,18 @@ export class HomePage {
   playersLeft: Observable<any[]>;
   playersRight: Observable<any[]>;
   score: any;
+  currentGroup: any = { key: "world" }
 
-  constructor(public navCtrl: NavController, public firebaseService: FirebaseServiceProvider) {
+  constructor(public navCtrl: NavController, public firebaseService: FirebaseServiceProvider, private storage: Storage, public events: Events) {
+    
+    //get currentGroup from local storage
+    this.getCurrentGroup();
+    
     for (let index = this.scoreMax; index >= this.scoreMin; index--) {
       this.scoreRange.push(index);
     }
-
-    this.players = this.firebaseService.getPlayers();
-
-    this.playerLeft = {
-      key: null,
-      img: './assets/imgs/avatar.png',
-      name: ''
-    };
-
-    this.playerRight = {
-      key: null,
-      img: './assets/imgs/avatar.png',
-      name: ''
-    };
+    
+    this.setupPlayers();
 
     this.score = {
       datetime: null,
@@ -48,8 +43,18 @@ export class HomePage {
       scoreRight: null,
       playerRight: this.playerRight
     }
-    this.playersLeft = this.players;
-    this.playersRight = this.players;
+
+    events.subscribe('functionCall:groupSet', (group) => {
+      this.currentGroup = group;
+      this.resetPlayers();
+    });
+     
+   
+    //get players
+    this.players = this.firebaseService.getPlayers();
+    this.updatePlayersLeft();
+    this.updatePlayersRight();
+        
   }
 
   getMatchInvalid() {
@@ -67,27 +72,55 @@ export class HomePage {
       )
   }
 
+  setupPlayers(){
+    this.playerLeft = {
+      key: null,
+      img: './assets/imgs/avatar.png',
+      name: ''
+    };
 
-  updateStatsLeft() {
-    let keyLeft = this.score.playerLeft.key;
-    this.playersRight = this.filterPlayer(keyLeft);
-    
+    this.playerRight = {
+      key: null,
+      img: './assets/imgs/avatar.png',
+      name: ''
+    };
   }
 
-  updateStatsRight() {
+  resetPlayers(){
+    this.score.playerLeft = this.playerLeft;
+    this.score.playerRight = this.playerRight;
+    this.updatePlayersLeft();
+    this.updatePlayersRight();
+  }
+
+
+  updatePlayersLeft() {
+    let keyLeft = this.score.playerLeft.key;
+    this.playersRight = this.filterPlayer(keyLeft);
+  }
+
+  updatePlayersRight() {
     let keyRight = this.score.playerRight.key;
     this.playersLeft = this.filterPlayer(keyRight);      
   }
 
-
   filterPlayer(key){
-    if(key!=null) {
-      return this.players.map(items => items.filter(p => p.key != key))
-    } else {
-      return this.players;
+    
+    if (key===null && (this.currentGroup === undefined || "world" === this.currentGroup.key)){
+        //do not filter
+        return this.players;
+    } else if (key!=null && (this.currentGroup === undefined || "world" === this.currentGroup.key)){
+       //filter by player key
+       return this.players.map(items => items.filter(p => p.key != key))
+    } else if (key!=null && this.currentGroup!=undefined) {
+      //filter by player.key and groups
+      return this.players.map(items => items.filter(p => p.key != key && p.groupid === this.currentGroup.key))
+    } else if (this.currentGroup!=undefined){
+      //filter by groups (only)
+      return this.players.map(items => items.filter(p => p.groupid === this.currentGroup.key))
     }
+   
   }
-
   
   saveScore(){
     if(!this.getMatchInvalid()) {
@@ -100,5 +133,16 @@ export class HomePage {
 
   }
 
+  //read local storage for currentGroup
+  getCurrentGroup(){
+    this.storage.ready().then( () => {
+      var val = this.storage.get('group');
+      if(null!==val || undefined!==val) {
+        this.currentGroup = val;
+      }else{
+        this.currentGroup = {key:"world"};
+      }
+    });
+  }
 
 }

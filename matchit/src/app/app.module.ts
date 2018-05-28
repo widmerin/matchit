@@ -7,17 +7,20 @@ import { PlayersPage } from '../pages/players/players';
 import { StatsPage } from '../pages/stats/stats';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { GroupsPage } from '../pages/groups/groups';
 
 import { Camera } from '@ionic-native/camera';  
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { PlayerModalPage } from '../pages/players/modal-page';
+import { GroupsModalPage } from '../pages/groups/modal-page';
 import { FirebaseServiceProvider } from '../providers/firebase-service/firebase-service';
 
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireModule } from 'angularfire2';
 import { HttpModule } from '@angular/http';
+import { IonicStorageModule } from '@ionic/storage';
 
 
 // Initialize Firebase
@@ -36,15 +39,18 @@ const firebaseConfig = {
     PlayersPage,
     StatsPage,
     HomePage,
+    GroupsPage,
     TabsPage,
-    PlayerModalPage
+    PlayerModalPage,
+    GroupsModalPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    HttpModule
+    HttpModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -52,8 +58,10 @@ const firebaseConfig = {
     PlayersPage,
     StatsPage,
     HomePage,
+    GroupsPage,
     TabsPage,
-    PlayerModalPage
+    PlayerModalPage,
+    GroupsModalPage
   ],
   providers: [
     Camera,    

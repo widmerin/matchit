@@ -13,19 +13,23 @@ export class FirebaseServiceProvider {
 
   playersRef: AngularFireList<any>;
   scoreRef: AngularFireList<any>;
+  groupsRef: AngularFireList<any>;
+
   players: Observable<any[]>;
   scores: Observable<any[]>;
+  groups: Observable<any[]>;
 
   constructor(public afd: AngularFireDatabase) {
     this.playersRef = this.afd.list('/players/');
     this.scoreRef = this.afd.list('/scores/');
+    this.groupsRef = this.afd.list('/groups/');
 
     this.players = this.playersRef.snapshotChanges().map(changes => {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
     });
 
-    // this.playersRef.push({ name: 'Michaela', img: './assets/imgs/Michaela.png' });
-    // this.playersRef.push({ name: 'Melanie', img: './assets/imgs/Melanie.png' });
+    //this.playersRef.push({ name: 'Michaela', img: './assets/imgs/Michaela.png' , groupid: '-LCyP0s2XwISI7_yjZKK'});
+    //this.playersRef.push({ name: 'Melanie', img: './assets/imgs/Melanie.png' , groupid: '-LCyT0D7IimKfrfOqIF-'});
 
 
     this.scores = this.scoreRef.snapshotChanges().map(changes => {
@@ -35,30 +39,21 @@ export class FirebaseServiceProvider {
     // this.scoreRef.push({ playerL: '222', playerR: '333', scoreL: '5', scoreR: '15', matchdate: '23423432432' });
     // this.scoreRef.push({ playerL: '222', playerR: '444', scoreL: '15', scoreR: '14' , matchdate: '23423432433' });
 
+    this.groups = this.groupsRef.snapshotChanges().map(changes => {
+      return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+    });
 
+    // this.groupsRef.push({ name: 'A-Team', img: './assets/imgs/Michaela.png' });
+    // this.groupsRef.push({ name: 'FHNW', img: './assets/imgs/Melanie.png' });
 
   }
 
-  getPlayers() {
-    return this.players.map(player => {
-       return player.sort(function(a,b){
-          return a.name.localeCompare(b.name);
-      })
-   });
-  }
-
-
+  // Scores
+ 
   getScores() {
      return this.scores.map(score => {
          return score.reverse();
      });
-  }
-
-  addPlayer(player) {
-    return this.playersRef.push({
-      name: player.name,
-      img: player.img
-    });
   }
 
   addScore(score) {
@@ -71,17 +66,67 @@ export class FirebaseServiceProvider {
     });
   }
 
+  // Players
+
+  getPlayers() {
+    return this.players.map(player => {
+       return player.sort(function(a,b){
+          return a.name.localeCompare(b.name);
+      })
+   });
+  }
+
+  addPlayer(player) {
+    return this.playersRef.push({
+      name: player.name,
+      img: player.img,
+      groupid: player.groupid
+    });
+  }
+
   updatePlayer(key, player) {
     return this.playersRef.update(
       key, {
         name: player.name,
-        img: player.img
+        img: player.img,
+        groupid: player.groupid
       });
   }
 
   deletePlayer(key) {
     this.playersRef.remove(key);
   }
+
+  // Groups
+
+  getGroups() {
+    return this.groups.map(group => {
+       return group.sort(function(a,b){
+          return a.name.localeCompare(b.name);
+      })
+   });
+  }
+
+  addGroup(group) {
+    return this.groupsRef.push({
+      name: group.name,
+      img: group.img
+    });
+  }
+
+  updateGroup(key, group) {
+    return this.groupsRef.update(
+      key, {
+        name: group.name,
+        img: group.img
+      });
+  }
+
+  deleteGroup(key) {
+    this.groupsRef.remove(key);
+  }
+
+  // Scores Statistics
 
   getScoreForPlayer(key){
     return this.scores.map(items =>

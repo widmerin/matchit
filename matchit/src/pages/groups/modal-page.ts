@@ -1,25 +1,19 @@
 import { Component } from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { Observable } from 'rxjs/Observable';
-import { FirebaseServiceProvider } from './../../providers/firebase-service/firebase-service';
-
 
 @Component({
   selector: 'modal-page',
   templateUrl: 'modal-page.html'
-})
+  })
 
-export class PlayerModalPage {
-    buttonText = "Add Player";
-    newPlayer = {
+export class GroupsModalPage {
+    buttonText = "Add Group";
+    newGroup = {
       key: null,
-      img: './assets/imgs/avatar.png',
-      name: '',
-      groupid: ''
+      img: './assets/imgs/groups.png',
+      name: ''
     };
-    groups: Observable<any[]>; 
-
     private options: CameraOptions = {
       quality: 50,
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -30,35 +24,26 @@ export class PlayerModalPage {
       targetWidth: 600,
       targetHeight: 600
     }
-  
-
-  constructor(public navParams: NavParams, public viewCtrl: ViewController, private camera: Camera, public firebaseService: FirebaseServiceProvider) {
     
-     //get Groups (all)
-     this.groups = this.firebaseService.getGroups();
 
-      
+  constructor(public navParams: NavParams, public viewCtrl: ViewController, private camera: Camera) {
     if(this.navParams.get('key') != null){
-      //player modal opend with player to edit
-      this.buttonText = "Update Player";
-      this.newPlayer = {
+      this.buttonText = "Update Group";
+      this.newGroup = {
         key: this.navParams.get('key'),
         img: this.navParams.get('img'),
-        name: this.navParams.get('name'),
-        groupid: this.navParams.get('groupid')
+        name: this.navParams.get('name')
       };
     }
   }
-
 
   closeModal() {
     this.viewCtrl.dismiss();
   }
 
-  saveModal(newPlayer) {
-    this.viewCtrl.dismiss(this.newPlayer);
+  saveModal(newGroup) {
+    this.viewCtrl.dismiss(this.newGroup);
   }
-
 
 
   takePicture() {
@@ -66,7 +51,7 @@ export class PlayerModalPage {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64:
       let base64Image = 'data:image/jpeg;base64,' + imageData;
-      this.newPlayer.img = base64Image;
+      this.newGroup.img = base64Image;
     }, (err) => {
       // Handle error
       console.log("failed on taking picture");

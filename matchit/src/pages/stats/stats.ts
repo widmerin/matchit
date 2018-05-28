@@ -134,6 +134,8 @@ export class StatsPage {
 
 
   //******Progress Pie*******/
+  //based on code by Dierk König//
+  
   /**
     * Detect if HTML5 Canvas is supported and, if so, configure the
     * canvas element accordingly

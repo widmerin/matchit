@@ -6,7 +6,7 @@
           <img src="assets/imgs/logo.png" class="logo" />
         </ion-col>
         <ion-col col-10>
-          <ion-title>Match it!</ion-title>
+          <p>Match it!</p>
         </ion-col>
         <ion-col col-1></ion-col>
       </ion-row>
@@ -14,7 +14,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="bgimg">
+<ion-content padding>
   <ion-grid>
     <ion-row>
       <ion-col col-12>
@@ -33,7 +33,7 @@
           <img [src]="score.playerLeft.img" class="player-img">
         </ion-avatar>
         <p>{{score.playerLeft.name}}</p>
-        <ion-select interface="action-sheet" cancelText="Dismiss" class="select-player" [(ngModel)]="score.playerLeft" (ngModelChange)="updateStatsLeft()">
+        <ion-select interface="action-sheet" cancelText="Dismiss" class="select-player" [(ngModel)]="score.playerLeft" (ngModelChange)="updatePlayersLeft()">
           <ion-option *ngFor="let player of playersLeft | async" [value]="player">{{player.name}}</ion-option>
         </ion-select>
       </ion-col>
@@ -43,7 +43,7 @@
           <img [src]="score.playerRight.img" class="player-img">
         </ion-avatar>
          <p>{{score.playerRight.name}}</p>
-        <ion-select interface="action-sheet" cancelText="Dismiss" class="select-player" [(ngModel)]="score.playerRight" (ngModelChange)="updateStatsRight()">
+        <ion-select interface="action-sheet" cancelText="Dismiss" class="select-player" [(ngModel)]="score.playerRight" (ngModelChange)="updatePlayersRight()">
           <ion-option *ngFor="let player of playersRight | async" [value]="player">{{player.name}}</ion-option>
         </ion-select>
       </ion-col>
