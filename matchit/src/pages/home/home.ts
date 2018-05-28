@@ -136,13 +136,14 @@ export class HomePage {
 
   //read local storage for currentGroup
   getCurrentGroup(){
-    this.storage.get('group').then(val => {
+    this.storage.ready().then( () => {
+      var val = this.storage.get('group');
       if(null!==val || undefined!==val) {
-        this.currentGroup = val
+        this.currentGroup = val;
       }else{
         this.currentGroup = {key:"world"};
       }
     });
-   }
+  }
 
 }
