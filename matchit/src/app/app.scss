@@ -27,8 +27,10 @@ ion-header {
     max-width: 35px;
 }
 
-button.button-md{
-	color: color($colors, dark);
+.bar-button-default-md, 
+.bar-button-clear-md-default, 
+.bar-button-md-default {
+    color: #FFF;
 }
 
 ion-item-options button.button-md{

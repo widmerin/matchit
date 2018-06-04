@@ -14,10 +14,6 @@ page-home {
     }
 }
 
-.players,
-.controls {
-    padding-bottom: 0 !important;
-}
 
 .players ion-select {
     height: 0px;
@@ -80,6 +76,11 @@ ion-row.group {
 
 .group .item-ios.item-block .item-inner {
     border: none;
+}
+
+.group,
+.controls {
+    padding-bottom: 0 !important;
 }
 
 .score{
