@@ -1,10 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, Content } from 'ionic-angular';
+import { NavController, Content, Tabs } from 'ionic-angular';
 import { FirebaseServiceProvider } from './../../providers/firebase-service/firebase-service';
 import { Observable } from 'rxjs/Observable';
 import { Storage } from '@ionic/storage';
 import { Events } from 'ionic-angular';
-import { GroupsPage } from '../groups/groups';
 
 @Component({
   selector: 'page-home',
@@ -20,7 +19,6 @@ export class HomePage {
   scoreMax = 22;
   playerLeft: any;
   playerRight: any;
-  groupPage: any;
   players: Observable<any[]>;
   playersLeft: Observable<any[]>;
   playersRight: Observable<any[]>;
@@ -33,7 +31,7 @@ export class HomePage {
       name: 'World'
   };
 
-  constructor(public navCtrl: NavController, public firebaseService: FirebaseServiceProvider, private storage: Storage, public events: Events) {
+  constructor(public navCtrl: NavController, public firebaseService: FirebaseServiceProvider, private tabs:Tabs, private storage: Storage, public events: Events) {
     
     this.groups = this.firebaseService.getGroups();
     
@@ -65,9 +63,11 @@ export class HomePage {
     this.updatePlayersLeft();
     this.updatePlayersRight();
 
+  }
 
-    this.groupPage = GroupsPage;
 
+  switchTab(tabIndex) {
+      this.tabs.select(tabIndex);
   }
 
 

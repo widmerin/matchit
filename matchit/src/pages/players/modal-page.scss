@@ -24,10 +24,14 @@ modal-page {
         color: whitesmoke;
 	}
 
-	.bar-button{
-	  	display: inline-block;
-		color: whitesmoke;
-		margin-left: -50px;
+	.toolbar-content ion-buttons{
+		height: 100%;
+		display: flex;
+  		align-items: center;
+	}
+
+	.toolbar-content ion-buttons icon-md {
+		font-size: 20px;
 	}
 	
 

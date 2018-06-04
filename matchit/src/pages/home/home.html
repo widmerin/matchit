@@ -16,6 +16,14 @@
 
 <ion-content padding>
   <ion-grid>
+    <!--Groups--> 
+    <ion-row class="group"> 
+       <ion-col col-12>
+        <ion-item (click)=switchTab(3)>   
+            <img [src]=this.currentGroup.img><p class="name">{{this.currentGroup.name}}</p>
+        </ion-item>
+      </ion-col> 
+    </ion-row> 
     <!--Players-->
     <ion-row class="players">
 
@@ -43,14 +51,6 @@
         </ion-select>
       </ion-col>
     </ion-row>
-        <!--Groups--> 
-    <ion-row class="group"> 
-       <ion-col col-12>
-        <ion-item [navPush]="groupPage">   
-            <img [src]=this.currentGroup.img><div class="name">{{this.currentGroup.name}}</div>
-        </ion-item>
-      </ion-col> 
-    </ion-row> 
     <!--Scores-->
     <ion-row class="track">
       <ion-col col-2>

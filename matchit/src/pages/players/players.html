@@ -28,6 +28,11 @@
                           <ion-label>{{player.name}}</ion-label>
                         </ion-item>
                         <ion-item-options (ionSwipe)="deleteItem(player, slidingItem)">
+                            <button ion-button color="success" (click)="openModal(player)">
+                                <span class="button-inner">
+                                    <ion-icon name="create" ion-icon></ion-icon>Edit
+                                </span>
+                            </button>
                              <button ion-button color="danger" expandable (click)="deleteItem(player, slidingItem)">
                                 <span class="button-inner">
                                    <ion-icon name="trash" ion-icon></ion-icon>Delete
