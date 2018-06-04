@@ -13,3 +13,23 @@ Plattforms:
 Developers: 
 * Michael Job
 * Ina Widmer
+
+
+### Run app
+```
+cd matchit 
+ionic serve
+```
+
+### Install app on android device
+```
+cd matchit
+ionic cordova build android 
+ionic cordova run android
+```
+
+### Install app on iOS device
+```
+cd matchit
+ionic cordova build ios --device
+```
