@@ -24,7 +24,7 @@
         <ion-avatar item-start>
           <img [src]="score.playerLeft.img" class="player-img raised">
         </ion-avatar>
-        <p class="name"><span class="placeholder" [hidden]="this.score.playerLeft.name">Player 1</span>{{score.playerLeft.name}}</p>
+        <div class="name"><span class="placeholder" [hidden]="this.score.playerLeft.name">Player 1</span>{{score.playerLeft.name}}</div>
         </div>
         <ion-select interface="action-sheet" cancelText="Dismiss" class="select-player" [(ngModel)]="score.playerLeft" (ngModelChange)="updatePlayersLeft()">
           <ion-option *ngFor="let player of playersLeft | async" [value]="player">{{player.name}}</ion-option>
@@ -36,7 +36,7 @@
           <ion-avatar item-start>
             <img [src]="score.playerRight.img" class="player-img raised">
           </ion-avatar>
-          <p class="name"><span class="placeholder" [hidden]="this.score.playerRight.name">Player 2</span>{{score.playerRight.name}}</p>
+          <div class="name"><span class="placeholder" [hidden]="this.score.playerRight.name">Player 2</span>{{score.playerRight.name}}</div>
         </div>
         <ion-select interface="action-sheet" cancelText="Dismiss" class="select-player" [(ngModel)]="score.playerRight" (ngModelChange)="updatePlayersRight()">
           <ion-option *ngFor="let player of playersRight | async" [value]="player">{{player.name}}</ion-option>
