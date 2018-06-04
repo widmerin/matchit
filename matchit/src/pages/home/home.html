@@ -45,13 +45,11 @@
     </ion-row>
         <!--Groups--> 
     <ion-row class="group"> 
-      <ion-col col-2></ion-col>
-       <ion-col col-8>
+       <ion-col col-12>
         <ion-item (click)="gotoGroups()">   
             <img [src]=this.currentGroup.img><div class="name">{{this.currentGroup.name}}</div>
         </ion-item>
       </ion-col> 
-      <ion-col col-2></ion-col>
     </ion-row> 
     <!--Scores-->
     <ion-row class="track">
@@ -83,11 +81,11 @@
     </ion-row>
     <ion-row>
       <ion-col col-12>
-        <span class="info" [hidden]="this.score.scoreLeft!==null && this.score.scoreRight!==null">
-          Enter players and scores...
+        <span class="info" [hidden]="this.score.scoreLeft!==0 && this.score.scoreRight!==0">
+          Enter players and scores...<br />
         </span>
         <span class="info" [hidden]="getMatchInvalid()">
-          ...press 'save match' to store it.
+          ...press 'save match' to store it.<br />
         </span>
         <span class="warning" [hidden]="!scoreIsNotValid">{{this.getMessage()}}</span>
       </ion-col>

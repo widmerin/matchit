@@ -74,6 +74,13 @@ ion-row.group {
     vertical-align: top;
 }
 
+.group ion-label {
+    margin-top:5px;
+}
+
+.group .item-ios.item-block .item-inner {
+    border: none;
+}
 
 .score{
     font-family: 'ds-digitalnormal';
@@ -100,6 +107,10 @@ ion-row.group {
 }
 .warning {
     color: map-get($colors, warning);
+}
+
+.info {
+    color: map-get($colors, primary);
 }
 .controls ion-col{
     padding: 0px;
