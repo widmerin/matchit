@@ -158,7 +158,11 @@ export class HomePage {
     if(this.score.playerLeft.key === null || this.score.playerRight.key === null ){
        return "Please select two players";
     } else if (this.scoreIsNotValid) {
-      return "<span>Score is invalid. <br> Valid is '11 : <10' or '10:all with diff 2' or vice versa.</span>";
+      if(this.score.scoreLeft>9 && this.score.scoreRight>9){
+        return "<span>Score is invalid. <br> 2 points advance needed.</span>";
+      }else{
+        return "<span>Score is invalid. <br> Valid is 11 : 9 or less.</span>";
+      }
     }
     return "";
   }
