@@ -46,7 +46,7 @@
         <!--Groups--> 
     <ion-row class="group"> 
        <ion-col col-12>
-        <ion-item (click)="gotoGroups()">   
+        <ion-item [navPush]="groupPage">   
             <img [src]=this.currentGroup.img><div class="name">{{this.currentGroup.name}}</div>
         </ion-item>
       </ion-col> 
@@ -81,7 +81,7 @@
     </ion-row>
     <ion-row>
       <ion-col col-12>
-        <span class="info" [hidden]="this.score.scoreLeft!==0 && this.score.scoreRight!==0">
+        <span class="info" [hidden]="this.score.scoreLeft!==0 || this.score.scoreRight!==0">
           Enter players and scores...<br />
         </span>
         <span class="info" [hidden]="getMatchInvalid()">

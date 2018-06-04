@@ -20,6 +20,7 @@ export class HomePage {
   scoreMax = 15;
   playerLeft: any;
   playerRight: any;
+  groupPage: any;
   players: Observable<any[]>;
   playersLeft: Observable<any[]>;
   playersRight: Observable<any[]>;
@@ -63,6 +64,9 @@ export class HomePage {
     this.players = this.firebaseService.getPlayers();
     this.updatePlayersLeft();
     this.updatePlayersRight();
+
+
+    this.groupPage = GroupsPage;
 
   }
 
@@ -155,7 +159,7 @@ export class HomePage {
 
   getMessage() {
     if(this.score.playerLeft.key === null || this.score.playerRight.key === null ){
-       return "please select two players";
+       return "Please select two players";
     } else if (this.scoreIsNotValid) {
       return "Score is invalid. Score is valid if one player has 15 points or if one player has 9 points and the other player 0 points ";
     }
@@ -185,10 +189,6 @@ export class HomePage {
           this.setDefaultGroup();
       }
     });
-  }
-
-  gotoGroups() {
-     this.navCtrl.setRoot(GroupsPage, {opentab: 3});
   }
 
 }
