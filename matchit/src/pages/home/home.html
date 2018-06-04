@@ -19,7 +19,7 @@
     <!--Groups--> 
     <ion-row class="group"> 
        <ion-col col-12>
-        <ion-item [navPush]="groupPage">   
+        <ion-item (click)=switchTab(3)>   
             <img [src]=this.currentGroup.img><p class="name">{{this.currentGroup.name}}</p>
         </ion-item>
       </ion-col> 
