@@ -17,7 +17,7 @@ export class HomePage {
 
   scoreRange = [];
   scoreMin = 0;
-  scoreMax = 15;
+  scoreMax = 22;
   playerLeft: any;
   playerRight: any;
   groupPage: any;
@@ -70,18 +70,15 @@ export class HomePage {
 
   }
 
+
   getMatchInvalid() {
     //return invalid
-    return !(// valid conditions:
-      //not null
-      (this.score.scoreRight !== null && this.score.scoreLeft !== null
-        && this.score.playerLeft.key !== null && this.score.playerRight.key !== null) &&
+    return !(
       //valid scores
-      ((this.score.scoreRight < 15 && this.score.scoreRight > 0 && this.score.scoreLeft === 15)
-        || (this.score.scoreRight === 15 && this.score.scoreLeft < 15 && this.score.scoreLeft > 0)
-        || (this.score.scoreRight === 9 && this.score.scoreLeft === 0)
-        || (this.score.scoreRight === 0 && this.score.scoreLeft === 9)
-        )
+           (this.score.scoreRight < 10 && this.score.scoreLeft === 11)
+        || (this.score.scoreRight === 11 && this.score.scoreLeft < 10)
+        || (this.score.scoreRight > 9 && this.score.scoreLeft > this.score.scoreRight+1)
+        || (this.score.scoreLeft > 9 && this.score.scoreRight > this.score.scoreLeft+1)    
       )
   }
 
@@ -161,7 +158,7 @@ export class HomePage {
     if(this.score.playerLeft.key === null || this.score.playerRight.key === null ){
        return "Please select two players";
     } else if (this.scoreIsNotValid) {
-      return "Score is invalid. Score is valid if one player has 15 points or if one player has 9 points and the other player 0 points ";
+      return "<span>Score is invalid. <br> Valid is '11 : <10' or '10:all with diff 2' or vice versa.</span>";
     }
     return "";
   }

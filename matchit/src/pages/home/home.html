@@ -87,7 +87,7 @@
         <span class="info" [hidden]="getMatchInvalid()">
           ...press 'save match' to store it.<br />
         </span>
-        <span class="warning" [hidden]="!scoreIsNotValid">{{this.getMessage()}}</span>
+        <span class="warning" [hidden]="!scoreIsNotValid" [innerHtml]=this.getMessage()></span>
       </ion-col>
     </ion-row>
   </ion-grid>
