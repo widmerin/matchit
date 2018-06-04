@@ -8,91 +8,132 @@ page-home {
     }
 
     .select-player {
-         .select-text{
-            visibility: hidden;
-           height: 0px;
-        }
+       .select-text{
+        visibility: hidden;
+        height: 0px;
     }
+}
 
-  .players ion-select {
+.players {
+    padding-bottom: 0 !important;
+}
+
+.players ion-select {
     height: 0px;
     padding: 0;
-  }
+}
 
-   ion-avatar .player-img{
-        border-radius: 50%;
-        overflow: hidden;
-        max-width: 100px;
-        width: 100%;
-        max-height: 100px;
-        display: inline-block;
-    }
+.players  ion-avatar {
+    display: inline-block;
+    width: 100%;
+}
 
-    .scroll-content ion-row {
-        padding-bottom: 20px;
-    }
+.players ion-avatar .player-img {
+    border-radius: 50%;
+    overflow: hidden;
+    max-width: 100px;
+    width: 100%;
+    max-height: 100px;
+    display: inline-block;
+}
 
-    ion-row.group {
-        padding-bottom: 5px;
-    }
+.players .name {
+    margin-top: 14px;
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+}
 
-    .score{
-        font-family: 'ds-digitalnormal';
-        font-size: 2.7em;
-        color: #000;
-        background-color: #FFF;
-        border-radius: 2px;
-        padding: 0px;
-    }
-    .vs{
-        padding-top: 0.3em;
-        font-weight: bold;
-        background: transparent;
-        color: #FFF;
+.players .name .placeholder {
+    color: #999;
+}
 
-    }
-    .vsPlayer{
-        padding-top: 3.3em;
-        font-weight: bold;
+.scroll-content ion-row {
+    padding-bottom: 20px;
+}
 
-    }
-    .select-icon {
-		visibility: hidden;
-	}
-  .warning {
-    color: map-get($colors, warning);
-  }
-  .controls ion-col{
+ion-row.group {
+    padding-bottom: 5px;
+}
+
+.group img {
+  position: relative;
+  /* Adjust these values accordingly */
+  top: 5px;
+  left: 5px;
+  margin-right: 10px;
+  color: #FFF;
+}
+
+.group .name {
+    color: #FFF;
+    margin-left: 10px;
+    margin-top:10px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.score{
+    font-family: 'ds-digitalnormal';
+    font-size: 2.7em;
+    color: #000;
+    background-color: #FFF;
+    border-radius: 2px;
     padding: 0px;
-  }
+}
+.vs{
+    padding-top: 0.3em;
+    font-weight: bold;
+    background: transparent;
+    color: #FFF;
 
-   .track{ 
-        .select-icon { 
+}
+.vsPlayer{
+    padding-top: 3.3em;
+    font-weight: bold;
+
+}
+.select-icon {
+  visibility: hidden;
+}
+.warning {
+    color: map-get($colors, warning);
+}
+.controls ion-col{
+    padding: 0px;
+}
+
+.track{ 
+    .select-icon { 
         visibility: hidden; 
-      } 
     } 
- 
-    .group { 
-        ion-item { 
-            background: transparent; 
-            
-            border: 0px; 
- 
-            p{ 
-                 color: whitesmoke; 
-            } 
-        } 
-        .item-md.item-block .item-inner {
-            border: none;
-        }
-           
-         
-        img { 
-            height: 20vw;  
-            width: 20vw;  
-            max-height: 40px; 
-            max-width: 40px; 
-            border-radius: 50%; 
-        } 
-    }  
+} 
+
+.group { 
+    ion-item { 
+        background: transparent; 
+        text-align: center;
+        border: 0px; 
+
+        p{ 
+           color: whitesmoke; 
+       } 
+   } 
+   .item-md.item-block .item-inner {
+    border: none;
+}
+
+ion-avatar {
+    margin: 0 !important;
+}
+
+
+img { 
+    height: 20vw;  
+    width: 20vw;  
+    max-height: 30px; 
+    max-width: 30px; 
+    border-radius: 50%; 
+} 
+}  
 }
