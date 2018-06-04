@@ -1,6 +1,15 @@
-# Workshop 6 - Ionic App "Match It"
+## Studentproject Ionic App @FHNWTechnik
+# Match it!
+### FS18 iCompetence FHNW - Workshop 6 Mobile Apps
 
-Developer: 
+Frameworks:
+* Ionic 3.1.8
+
+Plattforms:
+* iOS
+* Android
+
+
+Developers: 
 * Michael Job
 * Ina Widmer
-
