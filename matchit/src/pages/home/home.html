@@ -56,13 +56,13 @@
       <ion-col col-2>
       </ion-col>
       <ion-col col-3 class="score raised">
-        <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="score.scoreLeft" placeholder="0" (ngModelChange)="updateScore()">
+        <ion-select interface="interface" cancelText="Dismiss" [(ngModel)]="score.scoreLeft" placeholder="0" (ngModelChange)="updateScore()">
           <ion-option *ngFor="let score of scoreRange" #item [value]="score">{{score}}</ion-option>
         </ion-select>
       </ion-col>
       <ion-col col-2 class="score vs">:</ion-col>
       <ion-col col-3 class="score raised">
-        <ion-select interface="action-sheet" cancelText="Dismiss" [(ngModel)]="score.scoreRight" placeholder="0" (ngModelChange)="updateScore()">
+        <ion-select interface="interface" cancelText="Dismiss" [(ngModel)]="score.scoreRight" placeholder="0" (ngModelChange)="updateScore()">
           <ion-option *ngFor="let score of scoreRange" #item [value]="score">{{score}}</ion-option>
         </ion-select>
       </ion-col>
