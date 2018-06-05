@@ -24,12 +24,11 @@ ionic serve
 ### Install app on android device
 ```
 cd matchit
-ionic cordova build android 
-ionic cordova run android
+ionic cordova run android --device
 ```
 
 ### Install app on iOS device
 ```
 cd matchit
-ionic cordova build ios --device
+ionic cordova run ios --device
 ```
