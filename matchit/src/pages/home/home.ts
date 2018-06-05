@@ -16,7 +16,7 @@ export class HomePage {
 
   scoreRange = [];
   scoreMin = 0;
-  scoreMax = 22;
+  scoreMax = 15;
   playerLeft: any;
   playerRight: any;
   players: Observable<any[]>;
@@ -70,11 +70,16 @@ export class HomePage {
       this.tabs.select(tabIndex);
   }
 
-
+  //return invalid
   getMatchInvalid() {
-    //return invalid
-    return !(
-      //valid scores
+      return !(
+        // valid conditions:
+           //players not null
+            (this.score.scoreRight !== null &&
+             this.score.scoreLeft !== null &&
+             this.score.playerLeft.key !== null &&
+             this.score.playerRight.key !== null) &&
+           //valid scores
            (this.score.scoreRight < 10 && this.score.scoreLeft === 11)
         || (this.score.scoreRight === 11 && this.score.scoreLeft < 10)
         || (this.score.scoreRight > 9 && this.score.scoreLeft > this.score.scoreRight+1)
